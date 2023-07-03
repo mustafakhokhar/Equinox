@@ -10,8 +10,6 @@ class GadgetScreen extends StatefulWidget {
 class _GadgetScreenState extends State<GadgetScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("Gadget Screen"),
-    );
+    return const Text("Gadget Screen");
   }
 }

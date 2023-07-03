@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:temp_store/Widgets/headingText.dart';
 import 'package:temp_store/Widgets/youtubePlay.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:temp_store/constants/colors.dart';
+import 'package:temp_store/views/buyers/FunctionalScreen.dart/product_list.dart';
 
 class PhoneScreen extends StatefulWidget {
   const PhoneScreen({super.key});
@@ -16,13 +19,13 @@ class _PhoneScreenState extends State<PhoneScreen> {
       ['Category'],
       // Text for each button in the tab
       [
-        'Family Car',
-        'Automatic Car',
-        'Big Car',
-        'Small Car',
-        'Imported Car',
-        'Old Car',
-        'xyz Car',
+        'NON PTA',
+        'PTA',
+        'JV',
+        'Open Box',
+        'Kit',
+        'With box',
+        'Damaged',
         'Abc Car',
         'Ghasti Car'
       ],
@@ -93,6 +96,45 @@ class _PhoneScreenState extends State<PhoneScreen> {
         'Infinix',
         'Xiaomi',
       ],
+      // icons for each button in the tab
+      [
+        Icon(
+          Icons.car_rental,
+          color: Colors.grey[600],
+        ),
+        Icon(
+          Icons.car_crash,
+          color: Colors.grey[600],
+        ),
+        Icon(
+          Icons.car_repair,
+          color: Colors.grey[600],
+        ),
+        Icon(
+          Icons.car_rental,
+          color: Colors.grey[600],
+        ),
+        Icon(
+          Icons.car_crash,
+          color: Colors.grey[600],
+        ),
+        Icon(
+          Icons.car_repair,
+          color: Colors.grey[600],
+        ),
+        Icon(
+          Icons.car_rental,
+          color: Colors.grey[600],
+        ),
+        Icon(
+          Icons.car_crash,
+          color: Colors.grey[600],
+        ),
+        Icon(
+          Icons.car_repair,
+          color: Colors.grey[600],
+        ),
+      ],
     ],
     [
       ['Color'],
@@ -112,50 +154,505 @@ class _PhoneScreenState extends State<PhoneScreen> {
     ['iPhone 13 Pro Max', '151k', '124k'],
   ];
 
-  final YoutubePlayerController _ytController = YoutubePlayerController(
-    initialVideoId: YoutubePlayer.convertUrlToId(
-        'https://www.youtube.com/watch?v=zwEi3XIZTwc')!,
-    flags: const YoutubePlayerFlags(
-      autoPlay: false,
-      mute: false,
-    ),
-  );
-
   @override
   Widget build(BuildContext context) {
     return ListView(
       padding: EdgeInsets.only(
           top: MediaQuery.of(context).size.height * 0.02, left: 25, right: 25),
       children: [
-        // --- FIRST SECTION --- [Used Photos] text, tabs, gridview
-        BrowseCarousel(tabs: _tabs),
-        // --- Second SECTION --- [New Phones] x, y, z
-
+        // --- FIRST SECTION --- [Used Phones]
+        Container(
+          height: MediaQuery.of(context).size.height * 0.4,
+          color: Colors.transparent,
+          child: DefaultTabController(
+              length: _tabs.length,
+              child: Scaffold(
+                appBar: AppBar(
+                  titleSpacing: 0,
+                  elevation: 0,
+                  backgroundColor: CustomColors.appBackgroundColor,
+                  title: const HeadingText(text: 'Browse Used Phones'),
+                  // TAB Options
+                  bottom: TabBar(
+                    isScrollable: true,
+                    unselectedLabelColor: CustomColors.tabUnSelectedLabelColor,
+                    labelColor: CustomColors.tabLabelColor,
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    indicator: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: CustomColors.buttonUnselectedColor),
+                    tabs: [
+                      for (int i = 0; i < _tabs.length; i++)
+                        Tab(
+                          child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                _tabs[i][0][0],
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width *
+                                            0.038),
+                              )),
+                        ),
+                    ],
+                  ),
+                ),
+                backgroundColor: CustomColors.appBackgroundColor,
+                // Grid View of the tabs
+                body: Padding(
+                  padding: const EdgeInsets.fromLTRB(5, 10, 0, 10),
+                  child: TabBarView(children: [
+                    MainGrid(
+                      tabs: _tabs,
+                      index: 0,
+                    ),
+                    MainGridText(
+                      tabs: _tabs,
+                      index: 1,
+                    ),
+                    MainGrid(
+                      tabs: _tabs,
+                      index: 2,
+                    ),
+                    const Icon(Icons.food_bank),
+                    const Icon(Icons.woman),
+                    const Icon(Icons.woman),
+                  ]),
+                ),
+              )),
+        ),
+        // --- Second SECTION --- [Our Offerings]
+        Container(
+          padding: const EdgeInsets.only(top: 20, bottom: 10),
+          height: MediaQuery.of(context).size.height * 0.34,
+          child: Column(
+            children: [
+              const HeadingText(text: 'Equinox\'s Offerings'),
+              Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.12,
+                  child: Column(
+                    children: [
+                      const ListTile(
+                        title: Text('SELL IT FOR ME'),
+                        subtitle: Text('We sell your gadgets for you!'),
+                        trailing: Icon(Icons.arrow_forward_ios),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            'Hassel Free',
+                            style: TextStyle(
+                              color: Colors.blue[600],
+                            ),
+                          ),
+                          Text(
+                            'Secure',
+                            style: TextStyle(
+                              color: Colors.blue[600],
+                            ),
+                          ),
+                          Text(
+                            'Best Price',
+                            style: TextStyle(
+                              color: Colors.blue[600],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      child: const ListTile(
+                        title: Text('BUY IT FOR ME'),
+                        subtitle: Text('We buy your gadgets for you!'),
+                        trailing: Icon(Icons.arrow_forward_ios),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      child: const ListTile(
+                        title: Text('REPAIR IT FOR ME'),
+                        subtitle: Text('We repair your gadgets for you!'),
+                        trailing: Icon(Icons.arrow_forward_ios),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
         // --- ADVERTISEMENT ---
+        const AdsPlaceHolder(),
+        // --- Third SECTION --- [Featured Phones]
         Container(
-          color: Colors.orange,
-          height: 100,
+          color: Color.fromARGB(0, 0, 0, 0),
+          height: MediaQuery.of(context).size.height * 0.37,
+          child: Column(
+            children: [
+              const HeadingText(text: 'Featured Phones'),
+              Expanded(
+                child: FeaturedProductCarousel(tabs: _tabs),
+              ),
+            ],
+          ),
         ),
-        // --- Third SECTION --- [x] x, y, z
+        // --- Fourth SECTION --- [Phones Listing]
         Container(
-          color: Colors.deepPurpleAccent,
-          height: 200,
-        ),
-        // --- Fourth SECTION --- [x] x, y, z
-        Container(
-          color: Colors.blue,
-          height: 200,
+          color: Colors.transparent,
+          height: MediaQuery.of(context).size.height * 0.37,
+          child: Column(
+            children: [
+              const HeadingText(text: 'Phones Listing'),
+              Expanded(
+                child: NormalProductCarousel(tabs: _tabs),
+              ),
+            ],
+          ),
         ),
         // --- Fifth SECTION --- [Youtube]
         const YoutubeWidget(),
         // --- Sixth SECTION --- [PTA Tax]
         CurrentPTATaxWidget(devicePTAList: _devicePTAList),
         // --- ADVERTISEMENT ---
-        Container(
-          color: Colors.orange,
-          height: 100,
-        ),
+        const AdsPlaceHolder(),
       ],
+    );
+  }
+}
+
+class NormalProductCarousel extends StatelessWidget {
+  const NormalProductCarousel({
+    Key? key,
+    required List<List<List>> tabs,
+  })  : _tabs = tabs,
+        super(key: key);
+
+  final List<List<List>> _tabs;
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+      shrinkWrap: true,
+      scrollDirection: Axis.horizontal,
+      crossAxisCount: 1,
+      crossAxisSpacing: 10,
+      mainAxisSpacing: 10,
+      childAspectRatio: MediaQuery.of(context).size.width *
+          3 /
+          (MediaQuery.of(context).size.height),
+      children: [
+        for (int i = 0; i < _tabs[0][1].length; i++)
+          GestureDetector(
+              child: Card(
+                  semanticContainer: true,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  elevation: 2,
+                  child: Column(
+                    children: [
+                      Image.network(
+                        'http://via.placeholder.com/640x360',
+                        fit: BoxFit.contain,
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 15, 10, 0),
+                          child: FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              _tabs[0][1][i],
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.045,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                          child: Text(
+                            _tabs[0][1][i],
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.04,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                          child: Text(
+                            _tabs[0][1][i],
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.035,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
+                              child: Text(
+                                'NEW',
+                                style: TextStyle(
+                                  color: Colors.grey[600],
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.035,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
+                              child: Text(
+                                'PTA',
+                                style: TextStyle(
+                                  color: Colors.grey[600],
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.035,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
+                              child: Text(
+                                '256GB',
+                                style: TextStyle(
+                                  color: Colors.grey[600],
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.035,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  )),
+              onTap: () {
+                print('object');
+              }),
+      ],
+    );
+  }
+}
+
+class FeaturedProductCarousel extends StatelessWidget {
+  const FeaturedProductCarousel({
+    Key? key,
+    required List<List<List>> tabs,
+  })  : _tabs = tabs,
+        super(key: key);
+
+  final List<List<List>> _tabs;
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+      shrinkWrap: true,
+      scrollDirection: Axis.horizontal,
+      crossAxisCount: 1,
+      crossAxisSpacing: 10,
+      mainAxisSpacing: 10,
+      childAspectRatio: MediaQuery.of(context).size.width *
+          3 /
+          (MediaQuery.of(context).size.height),
+      children: [
+        for (int i = 0; i < _tabs[0][1].length; i++)
+          Stack(children: [
+            GestureDetector(
+              child: Card(
+                  semanticContainer: true,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  elevation: 2,
+                  child: Column(
+                    children: [
+                      Image.network(
+                        'http://via.placeholder.com/640x360',
+                        fit: BoxFit.contain,
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 15, 10, 0),
+                          child: FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: Text(
+                              _tabs[0][1][i],
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.045,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                          child: Text(
+                            _tabs[0][1][i],
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.04,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                          child: Text(
+                            _tabs[0][1][i],
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.035,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
+                              child: Text(
+                                'NEW',
+                                style: TextStyle(
+                                  color: Colors.grey[600],
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.035,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
+                              child: Text(
+                                'PTA',
+                                style: TextStyle(
+                                  color: Colors.grey[600],
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.035,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
+                              child: Text(
+                                '256GB',
+                                style: TextStyle(
+                                  color: Colors.grey[600],
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.035,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  )),
+              onTap: () {
+                print('tapped');
+              },
+            ),
+            const Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Icon(Icons.star, color: Color.fromARGB(255, 247, 185, 29)),
+            )
+          ]),
+      ],
+    );
+  }
+}
+
+class AdsPlaceHolder extends StatelessWidget {
+  const AdsPlaceHolder({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 20, bottom: 10),
+      child: Container(
+        padding: const EdgeInsets.only(top: 10, bottom: 10),
+        color: Colors.indigo[300],
+        height: 100,
+        child: const Align(
+            alignment: Alignment.center,
+            child: Text(
+              'Advertisement',
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            )),
+      ),
     );
   }
 }
@@ -178,14 +675,7 @@ class YoutubeWidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Tech Reviews',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: MediaQuery.of(context).size.width * 0.058,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                const HeadingText(text: 'Tech Reviews'),
                 Text(
                   'see all',
                   style: TextStyle(
@@ -207,7 +697,7 @@ class YoutubeWidget extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: YoutubeVideo(
+                  child: const YoutubeVideo(
                       "https://www.youtube.com/watch?v=zwEi3XIZTwc"),
                 ),
               ],
@@ -246,11 +736,7 @@ class CurrentPTATaxWidget extends StatelessWidget {
                       color: Colors.black,
                       size: MediaQuery.of(context).size.height * 0.035),
                   contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  title: Text('Current PTA Tax',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: MediaQuery.of(context).size.height * 0.026,
-                          fontWeight: FontWeight.bold)),
+                  title: const HeadingText(text: 'Current PTA Tax'),
                 )),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
@@ -264,7 +750,7 @@ class CurrentPTATaxWidget extends StatelessWidget {
                   title: const Text('Device',
                       style: TextStyle(color: Colors.white)),
                   trailing: SizedBox(
-                    width: 140,
+                    width: MediaQuery.of(context).size.width * 0.3,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
@@ -285,9 +771,13 @@ class CurrentPTATaxWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10)),
                   elevation: 1,
                   child: ListTile(
-                    title: Text(_devicePTAList[i][0]),
+                    title: Text(
+                      _devicePTAList[i][0],
+                      style: TextStyle(
+                          fontSize: MediaQuery.of(context).size.width * 0.039),
+                    ),
                     trailing: SizedBox(
-                      width: 120,
+                      width: MediaQuery.of(context).size.width * 0.25,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -301,88 +791,6 @@ class CurrentPTATaxWidget extends StatelessWidget {
               ),
           ],
         ));
-  }
-}
-
-class BrowseCarousel extends StatelessWidget {
-  const BrowseCarousel({
-    Key? key,
-    required List<List<List>> tabs,
-  })  : _tabs = tabs,
-        super(key: key);
-
-  final List<List<List>> _tabs;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.4,
-      color: Colors.transparent,
-      child: DefaultTabController(
-          length: _tabs.length,
-          child: Scaffold(
-            appBar: AppBar(
-              titleSpacing: 0,
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-              title: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Browse Used Phones',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: MediaQuery.of(context).size.width * 0.058,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              // TAB Options
-              bottom: TabBar(
-                isScrollable: true,
-                unselectedLabelColor: Colors.grey[600],
-                labelColor: Colors.white,
-                indicatorSize: TabBarIndicatorSize.tab,
-                indicator: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.blue[900]),
-                tabs: [
-                  for (int i = 0; i < _tabs.length; i++)
-                    Tab(
-                      child: Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            _tabs[i][0][0],
-                            style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.width * 0.038),
-                          )),
-                    ),
-                ],
-              ),
-            ),
-            // Grid View of the tabs
-            body: Padding(
-              padding: const EdgeInsets.fromLTRB(5, 10, 0, 10),
-              child: TabBarView(children: [
-                MainGrid(
-                  tabs: _tabs,
-                  index: 0,
-                ),
-                MainGridText(
-                  tabs: _tabs,
-                  index: 1,
-                ),
-                MainGrid(
-                  tabs: _tabs,
-                  index: 2,
-                ),
-                const Icon(Icons.food_bank),
-                const Icon(Icons.woman),
-                const Icon(Icons.woman),
-              ]),
-            ),
-          )),
-    );
   }
 }
 
@@ -455,7 +863,7 @@ class MainGrid extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(1, 5, 1, 2),
             child: OutlinedButton(
               style: OutlinedButton.styleFrom(
-                backgroundColor: Colors.grey[50],
+                backgroundColor: CustomColors.GridViewColor,
                 elevation: 2,
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(
@@ -463,7 +871,14 @@ class MainGrid extends StatelessWidget {
                   ),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (context) => ProductListingPage(),
+                  ),
+                );
+              },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,

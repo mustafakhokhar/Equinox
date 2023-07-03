@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter/services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class YoutubeVideo extends StatefulWidget {
-  String youtubeUrl;
+  final String youtubeUrl;
 
-  YoutubeVideo(this.youtubeUrl);
+  const YoutubeVideo(this.youtubeUrl, {super.key});
 
   @override
   _YoutubeVideoState createState() => _YoutubeVideoState();
 }
 
 class _YoutubeVideoState extends State<YoutubeVideo> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+  // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   late YoutubePlayerController _controller;
   late TextEditingController _idController;
   late TextEditingController _seekToController;
-  bool _isPlayerReady = false;
+  final bool _isPlayerReady = false;
   late String videoId;
 
-  bool _metaDataPresent = false;
-  late YoutubeMetaData _videoMetaData;
+  // bool _metaDataPresent = false;
+  // late YoutubeMetaData _videoMetaData;
 
   @override
   void initState() {
@@ -42,13 +40,13 @@ class _YoutubeVideoState extends State<YoutubeVideo> {
     )..addListener(listener);
     _idController = TextEditingController();
     _seekToController = TextEditingController();
-    _videoMetaData = const YoutubeMetaData();
+    // _videoMetaData = const YoutubeMetaData();
   }
 
   void listener() {
     if (_isPlayerReady && mounted && !_controller.value.isFullScreen) {
       setState(() {
-        _videoMetaData = _controller.metadata;
+        // _videoMetaData = _controller.metadata;
       });
     }
   }

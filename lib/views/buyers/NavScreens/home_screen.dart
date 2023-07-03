@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:temp_store/Widgets/searchBar.dart';
+import 'package:temp_store/constants/colors.dart';
 import 'package:temp_store/views/buyers/HomePages/AccessoriesScreen.dart';
 import 'package:temp_store/views/buyers/HomePages/LaptopScreen.dart';
 import 'package:temp_store/views/buyers/HomePages/gadgetScreen.dart';
 import 'package:temp_store/views/buyers/HomePages/phoneScreen.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -28,19 +29,17 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   int _screenIndex = 0;
-  List<bool> _colorChange = [true, false, false, false];
+  final List<bool> _colorChange = [true, false, false, false];
 
   @override
   Widget build(BuildContext context) {
     // Home screen container with column split blue and white
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue[900],
+        backgroundColor: CustomColors.appBarColor,
         toolbarHeight: MediaQuery.of(context).size.height * 0.19,
         actions: [
           // The Header of the page with logo, categories, and search bar
-          Column(
-            children: [
               Container(
                 color: Colors.transparent,
                 width: MediaQuery.of(context).size.width,
@@ -52,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(children: [
                     // LOGO placeholder
                     Container(
-                      color: Colors.blue,
+                      color: CustomColors.placeholder,
                       height: MediaQuery.of(context).size.height * 0.06,
                       width: MediaQuery.of(context).size.width,
                       child: const Center(child: Text('Equinox Logo')),
@@ -83,8 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 },
                                 style: OutlinedButton.styleFrom(
                                   backgroundColor: _colorChange[i]
-                                      ? Colors.blue[50]
-                                      : Colors.blue[900],
+                                      ? CustomColors.buttonSelectedColor
+                                      : CustomColors.buttonUnselectedColor,
                                   visualDensity: VisualDensity.compact,
                                   shape: const RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
@@ -93,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Text(
                                   _titles[i],
                                   style: TextStyle(
-                                    fontSize: 12,
+                                      fontSize: 12,
                                       color: _colorChange[i]
                                           ? Colors.black
                                           : Colors.white),
@@ -107,11 +106,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ]),
                 ),
               ),
-            ],
-          )
         ],
       ),
       body: _screens[_screenIndex],
+      backgroundColor: CustomColors.appBackgroundColor,
     );
   }
 }

@@ -10,8 +10,6 @@ class AccessoriesScreen extends StatefulWidget {
 class _AccessoriesScreenState extends State<AccessoriesScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("Accessories Screen"),
-    );
+    return const Text("Accessories Screen");
   }
 }

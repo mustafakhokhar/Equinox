@@ -21,9 +21,9 @@ class _MainScreenBuyerState extends State<MainScreenBuyer> {
   int _pageIndex = 0;
 
   final List<Widget> _pages = [
-    HomeScreen(),
+    const HomeScreen(),
     const MyAds(),
-    SellNowPage(),
+    const SellNowPage(),
     const chatScreen(),
     const ProfilePage(),
   ];
@@ -44,20 +44,20 @@ class _MainScreenBuyerState extends State<MainScreenBuyer> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.work_outline), label: 'My Ads'),
+              icon: Icon(Icons.campaign_outlined), label: 'My Ads'),
           // BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Sell'),
           BottomNavigationBarItem(
             backgroundColor: Colors.black,
             icon: SizedBox.shrink(),
             label: "Sell Now",
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'chat'),
+          BottomNavigationBarItem(icon: Icon(Icons.storefront_outlined), label: 'chat'),
           BottomNavigationBarItem(
               icon: Icon(Icons.manage_accounts_outlined), label: 'Profile'),
         ],
       ),
       floatingActionButton:
-          FloatingActionButton(child: Icon(Icons.add), onPressed: () {}),
+          FloatingActionButton(child: const Icon(Icons.add), onPressed: () {}),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }

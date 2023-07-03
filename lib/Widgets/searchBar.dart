@@ -8,7 +8,7 @@ class HomeScreenSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height * 0.05,
       child: TextField(
         controller: _searchController,
@@ -27,7 +27,6 @@ class HomeScreenSearchBar extends StatelessWidget {
             },
           ),
           border: OutlineInputBorder(
-            
             borderRadius: BorderRadius.circular(15.0),
           ),
         ),
