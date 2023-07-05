@@ -49,5 +49,9 @@
 	<true/>
 	<key>io.flutter.embedded_views_preview</key>
 	<string>YES</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Access to save and load files</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Access to save files to the photo library</string>
 </dict>
 </plist>

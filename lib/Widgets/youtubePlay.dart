@@ -69,42 +69,43 @@ class _YoutubeVideoState extends State<YoutubeVideo> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 200,
-        color: Colors.blue,
-        child: VisibilityDetector(
-          key: const Key("unique key"),
-          onVisibilityChanged: (info) {
-            if (info.visibleFraction == 0) {
-              _controller.pause();
-            } else {
-              _controller.value.isPlaying
-                  ? _controller.play()
-                  : _controller.pause();
-            }
-          },
-          child: YoutubePlayer(
-            controller: _controller,
-            showVideoProgressIndicator: true,
-            progressIndicatorColor: Colors.blueAccent,
-            topActions: <Widget>[
-              const SizedBox(width: 8.0),
-              Expanded(
-                child: Text(
-                  _controller.metadata.title,
-                  style: const TextStyle(
-                    color: Colors.amber,
-                    fontSize: 18.0,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
+      height: 200,
+      color: Colors.blue,
+      // child: VisibilityDetector(
+      //   key: const Key("unique key"),
+      //   onVisibilityChanged: (info) {
+      //     if (info.visibleFraction == 0) {
+      //       _controller.pause();
+      //     } else {
+      //       _controller.value.isPlaying
+      //           ? _controller.play()
+      //           : _controller.pause();
+      //     }
+      //   },
+      child: YoutubePlayer(
+        controller: _controller,
+        showVideoProgressIndicator: true,
+        progressIndicatorColor: Colors.blueAccent,
+        topActions: <Widget>[
+          const SizedBox(width: 8.0),
+          Expanded(
+            child: Text(
+              _controller.metadata.title,
+              style: const TextStyle(
+                color: Colors.amber,
+                fontSize: 18.0,
               ),
-            ],
-            onReady: () {
-              _controller.addListener(listener);
-            },
-            onEnded: (data) {},
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
           ),
-        ));
+        ],
+        onReady: () {
+          _controller.addListener(listener);
+        },
+        onEnded: (data) {},
+      ),
+      // )
+    );
   }
 }

@@ -1,327 +1,276 @@
-// import 'package:flutter/material.dart';
-// import 'package:temp_store/Widgets/searchBar.dart';
-// import 'package:temp_store/constants/colors.dart';
-
-// class ProductListingScreen extends StatefulWidget {
-//   final sampleText;
-
-//   const ProductListingScreen({Key? key, required this.sampleText})
-//       : super(key: key);
-
-//   @override
-//   State<ProductListingScreen> createState() => _ProductListingScreenState();
-// }
-
-// class _ProductListingScreenState extends State<ProductListingScreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         backgroundColor: CustomColors.appBarColor,
-//         actions: [
-//           Container(
-//               width: MediaQuery.of(context).size.width,
-//               color: Colors.transparent,
-//               child: Padding(
-//                 padding: const EdgeInsets.only(
-//                   top: 5,
-//                   left: 35,
-//                   right: 35,
-//                 ),
-//                 child: Column(
-//                   children: [
-//                     HomeScreenSearchBar(),
-//                   ],
-//                 ),
-//               ))
-//         ],
-//       ),
-//       // body: ListView(
-//       //   padding: EdgeInsets.only(
-//       //       top: MediaQuery.of(context).size.height * 0.02, left: 25, right: 25),
-//       //   children: [
-
-//       //     // Material(child: HomeScreenSearchBar()),
-//       //   ],
-//       // ),
-//     );
-//   }
-// }
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:temp_store/Widgets/searchBar.dart';
+import 'package:temp_store/views/buyers/FunctionalScreen.dart/productDetails.dart';
 
+import '../../../constants/colors.dart';
 
-class ProductListingPage extends StatefulWidget {
-  @override
-  _ProductListingPageState createState() => _ProductListingPageState();
-}
-
-class _ProductListingPageState extends State<ProductListingPage> {
-  TextEditingController _searchController = TextEditingController();
-  String _searchTerm = '';
-  List<String> _selectedFilters = [];
+class ProductListingPage extends StatelessWidget {
+  const ProductListingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    const TextStyle dropdownMenuItem =
+        TextStyle(color: Colors.black, fontSize: 18);
+
+    final List<Map> filteredProducts = [
+      {
+        'title': 'iPhone 12 Pro Max',
+        'price': '800',
+        'image_url': 'http://via.placeholder.com/640x360',
+        'condition': 'New',
+        'approved': 'PTA',
+        'storage': '64GB',
+        'location': 'Islamabad'
+      },
+      {
+        'title': 'Samsung Galaxy S21 Ultra',
+        'price': '200',
+        'image_url': 'http://via.placeholder.com/640x360',
+        'condition': 'New',
+        'approved': 'PTA',
+        'storage': '64GB',
+        'location': 'Karachi'
+      },
+      {
+        'title': 'Nothing Phone 1',
+        'price': '300',
+        'image_url': 'http://via.placeholder.com/640x360',
+        'condition': 'New',
+        'approved': 'Non-PTA',
+        'storage': '64GB',
+        'location': 'Lahore'
+      },
+      {
+        'title': 'iPhone 13',
+        'price': '400',
+        'image_url': 'http://via.placeholder.com/640x360',
+        'condition': 'New',
+        'approved': 'PTA',
+        'storage': '64GB',
+        'location': 'Quetta'
+      },
+      {
+        'title': 'Saumsung Galaxy A51s',
+        'price': '400',
+        'image_url': 'http://via.placeholder.com/640x360',
+        'condition': 'New',
+        'approved': 'Non-PTA',
+        'storage': '64GB',
+        'location': 'United Kingdom'
+      },
+      {
+        'title': 'Nokia 3310',
+        'price': '400',
+        'image_url': 'http://via.placeholder.com/640x360',
+        'condition': 'New',
+        'approved': 'PTA',
+        'storage': '64GB',
+        'location': 'Pishin'
+      },
+      {
+        'title': 'Samsung Galaxy Z-Flip 5',
+        'price': '400',
+        'image_url': 'http://via.placeholder.com/640x360',
+        'condition': 'New',
+        'approved': 'PTA',
+        'storage': '64GB',
+        'location': 'Mustoong'
+      },
+      {
+        'title': 'iPhone SE 2020',
+        'price': '400',
+        'image_url': 'http://via.placeholder.com/640x360',
+        'condition': 'New',
+        'approved': 'PTA',
+        'storage': '64GB',
+        'location': 'Islamabad'
+      },
+    ];
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Product Listing'),
-      ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: _searchController,
-              onChanged: (value) {
-                setState(() {
-                  _searchTerm = value;
-                });
-              },
-              decoration: InputDecoration(
-                hintText: 'Search',
+      backgroundColor: const Color(0xfff0f0f0),
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Stack(
+            children: <Widget>[
+              // purple backdrop design and App bar
+              Container(
+                height: MediaQuery.of(context).size.height * 0.165,
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                    color: primary,
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(30),
+                        bottomRight: Radius.circular(30))),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: const Icon(
+                          Icons.arrow_back_ios,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const Text(
+                        "Phones",
+                        style: TextStyle(color: Colors.white, fontSize: 24),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.filter_list,
+                          color: primary,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            ),
+              // Search bar
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.128,
+                    ),
+                    HomeScreenSearchBar(),
+                  ],
+                ),
+              ),
+              // Each Item Card
+              SafeArea(
+                child: Container(
+                  padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height * 0.15),
+                  height: MediaQuery.of(context).size.height,
+                  width: double.infinity,
+                  child: ListView.builder(
+                      itemCount: filteredProducts.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        // List of items
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              CupertinoPageRoute(
+                                builder: (context) => ProductDetailsPage(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: Colors.white,
+                            ),
+                            width: double.infinity,
+                            height: MediaQuery.of(context).size.height * 0.15,
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 6, horizontal: 20),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 15),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                // Image
+                                Container(
+                                  width: MediaQuery.of(context).size.width * 0.32,
+                                  margin: const EdgeInsets.only(right: 15),
+                                  decoration: BoxDecoration(
+                                    // color: Colors.amber,
+                                    // borderRadius: BorderRadius.circular(50),
+                                    border:
+                                        Border.all(width: 2, color: secondary),
+                                    image: DecorationImage(
+                                        image: NetworkImage(
+                                            filteredProducts[index]['image_url']
+                                            // filterProducts[index]['image_url']
+                                            ),
+                                        fit: BoxFit.contain),
+                                  ),
+                                ),
+                                // Text to Display
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      customText(
+                                        filteredProducts[index]['title'],
+                                        18,
+                                        FontWeight.bold,
+                                      ),
+                                      customText(
+                                        'PKR ${filteredProducts[index]['price']}',
+                                        16,
+                                        FontWeight.bold,
+                                      ),
+                                      customText(
+                                        filteredProducts[index]['location'],
+                                        15,
+                                      ),
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          customText(
+                                            filteredProducts[index]['approved'],
+                                            13,
+                                          ),
+                                          const Icon(
+                                            Icons.more_vert,
+                                            color: secondary,
+                                            size: 12,
+                                          ),
+                                          customText(
+                                            filteredProducts[index]['condition'],
+                                            13,
+                                          ),
+                                          const Icon(
+                                            Icons.more_vert,
+                                            color: secondary,
+                                            size: 12,
+                                          ),
+                                          customText(
+                                            filteredProducts[index]['storage'],
+                                            13,
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
+                ),
+              ),
+            ],
           ),
-          _buildFilterOptions(),
-          // Expanded(
-          //   child: StreamBuilder<QuerySnapshot>(
-          //     stream: _getProductsStream(),
-          //     builder: (context, snapshot) {
-          //       if (snapshot.hasError) {
-          //         return Center(
-          //           child: Text('Error: ${snapshot.error}'),
-          //         );
-          //       }
-
-          //       if (snapshot.connectionState == ConnectionState.waiting) {
-          //         return Center(
-          //           child: CircularProgressIndicator(),
-          //         );
-          //       }
-
-          //       List<DocumentSnapshot> products = snapshot.data!.docs;
-          //       List<DocumentSnapshot> filteredProducts = _applyFilters(products);
-
-          //       if (filteredProducts.isEmpty) {
-          //         return Center(
-          //           child: Text('No products found.'),
-          //         );
-          //       }
-
-          //       return ListView.builder(
-          //         itemCount: filteredProducts.length,
-          //         itemBuilder: (context, index) {
-          //           var productData = filteredProducts[index].data()!;
-          //           return ListTile(
-          //             leading: Image.network(
-          //               productData['image_url'],
-          //               width: 60,
-          //               height: 60,
-          //               fit: BoxFit.cover,
-          //             ),
-          //             title: Text(productData['title']),
-          //             subtitle: Text('Price: \$${productData['price']}'),
-          //             onTap: () {
-          //               Navigator.push(
-          //                 context,
-          //                 MaterialPageRoute(
-          //                   builder: (context) => ProductDetailPage(productData),
-          //                 ),
-          //               );
-          //             },
-          //           );
-          //         },
-          //       );
-          //     },
-          //   ),
-          // ),
-        ],
-      ),
-    );
-  }
-
-  // Stream<QuerySnapshot> _getProductsStream() {
-  //   // Replace 'products' with the actual name of your collection in Firestore
-  //   return FirebaseFirestore.instance.collection('products').snapshots();
-  // }
-
-  // List<DocumentSnapshot> _applyFilters(List<DocumentSnapshot> products) {
-  //   return products.where((product) {
-  //     var data = product.data()!;
-  //     if (_searchTerm.isNotEmpty &&
-  //         !data['title'].toLowerCase().contains(_searchTerm.toLowerCase())) {
-  //       return false;
-  //     }
-
-  //     if (_selectedFilters.isNotEmpty) {
-  //       return data['filter_attribute'].any((filter) {
-  //         return _selectedFilters.contains(filter);
-  //       });
-  //     }
-
-  //     return true;
-  //   }).toList();
-  // }
-
-  // Widget _buildFilterOptions() {
-  //   return Padding(
-  //     padding: const EdgeInsets.all(8.0),
-  //     child: Row(
-  //       children: [
-  //         Expanded(
-  //           child: _buildFilterChip(
-  //             label: 'Location',
-  //             filters: ['Location A', 'Location B', 'Location C'],
-  //           ),
-  //         ),
-  //         SizedBox(width: 8),
-  //         Expanded(
-  //           child: _buildFilterChip(
-  //             label: 'Price',
-  //             filters: ['Low', 'Medium', 'High'],
-  //           ),
-  //         ),
-  //         SizedBox(width: 8),
-  //         Expanded(
-  //           child: _buildFilterChip(
-  //             label: 'PTA',
-  //             filters: ['PTA', 'Non PTA'],
-  //           ),
-  //         ),
-  //         SizedBox(width: 8),
-  //         Expanded(
-  //           child: _buildFilterChip(
-  //             label: 'JV',
-  //             filters: ['JV', 'Non JV'],
-  //           ),
-  //         ),
-  //         SizedBox(width: 8),
-  //         Expanded(
-  //           child: _buildFilterChip(
-  //             label: 'Colors',
-  //             filters: ['Red', 'Blue', 'Green'],
-  //           ),
-  //         ),
-  //         SizedBox(width: 8),
-  //         Expanded(
-  //           child: _buildFilterChip(
-  //             label: 'Brand',
-  //             filters: ['Brand A', 'Brand B', 'Brand C'],
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
-
-  Widget _buildFilterOptions() {
-  return SingleChildScrollView(
-    scrollDirection: Axis.horizontal,
-    child: Row(
-      children: [
-        SizedBox(width: 8),
-        _buildFilterChip(
-          label: 'Location',
-          filters: ['Location A', 'Location B', 'Location C'],
-        ),
-        SizedBox(width: 8),
-        _buildFilterChip(
-          label: 'Price',
-          filters: ['Low', 'Medium', 'High'],
-        ),
-        SizedBox(width: 8),
-        _buildFilterChip(
-          label: 'PTA',
-          filters: ['PTA', 'Non PTA'],
-        ),
-        SizedBox(width: 8),
-        _buildFilterChip(
-          label: 'JV',
-          filters: ['JV', 'Non JV'],
-        ),
-        SizedBox(width: 8),
-        _buildFilterChip(
-          label: 'Colors',
-          filters: ['Red', 'Blue', 'Green'],
-        ),
-        SizedBox(width: 8),
-        _buildFilterChip(
-          label: 'Brand',
-          filters: ['Brand A', 'Brand B', 'Brand C'],
-        ),
-        SizedBox(width: 8),
-      ],
-    ),
-  );
-}
-
-  
-
-  Widget _buildFilterChip({required String label, required List<String> filters}) {
-    return Wrap(
-      spacing: 4,
-      children: filters.map((filter) {
-        return FilterChip(
-          label: Text(filter),
-          selected: _selectedFilters.contains(filter),
-          onSelected: (isSelected) {
-            setState(() {
-              if (isSelected) {
-                _selectedFilters.add(filter);
-              } else {
-                _selectedFilters.remove(filter);
-              }
-            });
-          },
-        );
-      }).toList(),
-    );
-  }
-}
-
-class ProductDetailPage extends StatelessWidget {
-  final Map<String, dynamic> productData;
-
-  ProductDetailPage(this.productData);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Product Details'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.network(
-              productData['image_url'],
-              width: 200,
-              height: 200,
-              fit: BoxFit.cover,
-            ),
-            SizedBox(height: 16),
-            Text(
-              productData['title'],
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 8),
-            Text('Subtitle: ${productData['subtitle']}'),
-            SizedBox(height: 8),
-            Text('Price: \$${productData['price']}'),
-            SizedBox(height: 8),
-            Text('Model: ${productData['model']}'),
-            SizedBox(height: 8),
-            Text('Status: ${productData['status']}'),
-          ],
         ),
       ),
     );
   }
 }
 
+Widget customText(String text, double? fsize, [fweight = FontWeight.normal]) {
+  return Text(text,
+      style: TextStyle(
+          color: primary,
+          fontSize: fsize,
+          fontWeight: fweight,
+          letterSpacing: .3));
+}

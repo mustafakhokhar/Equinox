@@ -15,22 +15,21 @@ class _LaptopScreenState extends State<LaptopScreen> {
           top: MediaQuery.of(context).size.height * 0.02, left: 25, right: 25),
       children: const [
         // --- FIRST SECTION --- [Used Photos]
-        
+
         // --- Second SECTION --- [Our Offerings]
-        
+
         // --- ADVERTISEMENT ---
-        
+
         // --- Third SECTION --- [x]
-        
+
         // --- Fourth SECTION --- [x]
-        
+
         // --- Fifth SECTION --- [Youtube]
-        
+
         // --- Sixth SECTION --- [PTA Tax]
 
         // --- ADVERTISEMENT ---
       ],
     );
-    ;
   }
 }

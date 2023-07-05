@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:temp_store/views/buyers/main_screen.dart';
+import 'package:temp_store/views/buyers/AppMainNavigation.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MainScreenBuyer(),
+      home: const AppNavigationScreen(),
     );
   }
 }

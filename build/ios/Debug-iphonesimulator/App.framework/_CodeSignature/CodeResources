@@ -8,9 +8,13 @@
 		<data>
 		85iaADE5tc/NukRC+KGdiZaZ0ZA=
 		</data>
+		<key>flutter_assets/AssetManifest.bin</key>
+		<data>
+		TAB+HD6K/TL/g6wnCe/zbpvJmBY=
+		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		JjQDRhcnN7uxBB0ho1qJFrlZ1A4=
+		S0PhYjN4nnzaIfDlVTGq6loY18k=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -18,19 +22,87 @@
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		MK496mUUVTNNC4XG1IGwl3zqnp4=
+		9f6Jd2j/6pRYarFNeM2e71y8cNA=
+		</data>
+		<key>flutter_assets/assets/icons/PTAphone.png</key>
+		<data>
+		HpjW0Z1P1OLX0T2/wLc2NrfNlyo=
+		</data>
+		<key>flutter_assets/assets/icons/android.png</key>
+		<data>
+		iSgInrQJawbm56ELP02HsoAfhuI=
+		</data>
+		<key>flutter_assets/assets/icons/iPhone.png</key>
+		<data>
+		p5qZq4SL2WGzqc5qVhuvksQHlYs=
+		</data>
+		<key>flutter_assets/assets/icons/iPhone13.png</key>
+		<data>
+		TbVMv6VzupgFVrqJRTOcYFuAmAw=
+		</data>
+		<key>flutter_assets/assets/icons/ios.png</key>
+		<data>
+		SCiBcM82MRep7oQ/nfyFz/r7Sio=
+		</data>
+		<key>flutter_assets/assets/icons/laptop.png</key>
+		<data>
+		E6b81rGLbtaQd9PHlXilbhNtwQQ=
+		</data>
+		<key>flutter_assets/assets/icons/logoApple.png</key>
+		<data>
+		pmm7gYq/Y41LFDR7r3nYxF1nHP4=
+		</data>
+		<key>flutter_assets/assets/icons/logoOppo.png</key>
+		<data>
+		k+1lKu1lQznjpCEIEeobw0RZqy0=
+		</data>
+		<key>flutter_assets/assets/icons/logoSamsung.png</key>
+		<data>
+		uOE/6HzCqfdiQwz7DEk7bFwMJe8=
+		</data>
+		<key>flutter_assets/assets/icons/logoVivo.png</key>
+		<data>
+		khf3BhLCVjGZhHY8mIlErs1ujtk=
+		</data>
+		<key>flutter_assets/assets/icons/logoXiaomi.png</key>
+		<data>
+		p+ZfE32L4YSJImY+hIx8WB1DgXg=
+		</data>
+		<key>flutter_assets/assets/icons/logohuawei.png</key>
+		<data>
+		fhUBBPFz4Hc/2BkeoGTNRnT8M9E=
+		</data>
+		<key>flutter_assets/assets/icons/newPackedPhone.png</key>
+		<data>
+		mrG4AVIwFO6nGBN+JD97A0ZKoJU=
+		</data>
+		<key>flutter_assets/assets/icons/nonPTAphone.png</key>
+		<data>
+		F6tF/mOQ7KX1XvHzwqau+N5N3gY=
+		</data>
+		<key>flutter_assets/assets/icons/openBoxed.jpeg</key>
+		<data>
+		rnHZ9cRh1tO4X/69CAdoxAzv+jg=
+		</data>
+		<key>flutter_assets/assets/icons/softwarePhone.png</key>
+		<data>
+		QPk9njYoHysgkUGOXhECdDeMrgQ=
+		</data>
+		<key>flutter_assets/assets/icons/whatsapp.png</key>
+		<data>
+		RxOfzdZCdL1aaWp3igPqBC/Iu+4=
 		</data>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
-		mcmNrC70e/OT89y/p5EgxkVsLrs=
+		/CUoTuPQqqdexfyOT9lpJhV+2MQ=
 		</data>
 		<key>flutter_assets/isolate_snapshot_data</key>
 		<data>
-		jtyHs+6eMVt00swwjGovNjvYFno=
+		dRka9t86+Ik10kMCLsudB3ofChY=
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		BQ8BCGdAdMGWO6I4QVcOPM32+1Q=
+		ZjylmlcBHwHvxIotLauGWAXO7gI=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -50,20 +122,27 @@
 		</data>
 		<key>flutter_assets/shaders/ink_sparkle.frag</key>
 		<data>
-		fheZg+VOuxaKG8HBrezphSZYIJA=
+		KL+7f3IYR/Y9WDlxxUeDmgGoluc=
 		</data>
 		<key>flutter_assets/vm_snapshot_data</key>
 		<data>
-		1nKxBmP6cKJocBfr1M7WcVTuBUE=
+		wVCDsOQlJhUyvrMuhaM3MeqUNWk=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>flutter_assets/AssetManifest.bin</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			qGicWX398KzOvPnOOP3PUEebBMrlPgzqdLTiusb0KL8=
+			</data>
+		</dict>
 		<key>flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			zEhMXMOjCfqCAkbfHhBsl0LtMoKocDtIKOj+k+EPWko=
+			T9m1mGseZVgqKDO/3HU4BLRgPeSeIhkDctnbOH/wnwo=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -77,28 +156,147 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			btUF1ev/BrASlXb5XxgX/arEGdsgZk0MkCxvmUYa6Og=
+			Z5uO9MhtnPSGzfm8rtjuXFkhj0C5RoCJUKi//LYg5pE=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/icons/PTAphone.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			r03Jm4kWK+OOX5afzeFDhlmId7s4jLORWfGgE10XQBY=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/icons/android.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			wyP/rlsSBdAfC0pptshkjjOjHcROsodDy743SPSSg6c=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/icons/iPhone.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			11bHGNjXxVVfzu6VAlGw1PIP3IiiDDVZPY+BzEZGFok=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/icons/iPhone13.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			f0TKKJuA0x8wFIaeHvq4JE3nkhbTILVH5g1rq+FAjyw=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/icons/ios.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			QKXmtyvQUT0ztYND76HX9tCyONh82u7XbVnKQ+rqvaU=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/icons/laptop.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			0iUIgefo8sXEOcFQp1MT0y6EhJVilGotDDJyKPnJKKg=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/icons/logoApple.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			uYdKnSaHB0+cIqjSJ2M5uQOIyN/KzVpPH4elY/y/yO0=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/icons/logoOppo.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			RLyexXsQnT5/f2U+WMADyJYOTc2iVdyHBkFTL+4hhu8=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/icons/logoSamsung.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			jiQpnQoXAP55ZHdy6JBjZ2a0MaaiTofFs1FDzlD9kcY=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/icons/logoVivo.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			h5p7wBjW15oglDtWKljcnYrZ0/A67aNTUiEGko8mhpw=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/icons/logoXiaomi.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			dAZtZ8eh2+PeeCI0Ec7XKcdv7WS/iTSZN8IDcbz7Wms=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/icons/logohuawei.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			3SHaMln5qzhWyoUOmAWqjvjgDJXcg0/3+9uJWOo24wQ=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/icons/newPackedPhone.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			vPcZTLRSB/EsrA+hnnBqEeFZ4Wh46QN6UvJlnkjRE44=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/icons/nonPTAphone.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			TURU/HtwZN894mXfkaDJYjs8gEl8GMOaBwJZsSyVCZ0=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/icons/openBoxed.jpeg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			PIQGfLykVQicE1G8FVsIH4FHV0CCTN6XbLSTaKweqEM=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/icons/softwarePhone.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ymg3d2c/x0v7xrfnZ6eD5Lkb3aAAF1C28JxGwvVCqPU=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/icons/whatsapp.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			TI1CjUlJgHkyxn6oAqjuA35fVxFSYFh1bk1YQy642TM=
 			</data>
 		</dict>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			BugRRJlkJdABYrpi+ZDcvZjsh+EPQ4Uf2ST65b83vlc=
+			2YZbZxoJ1oPROoYwidiCXg9ho3aWzl19RIvIAjqmJFM=
 			</data>
 		</dict>
 		<key>flutter_assets/isolate_snapshot_data</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			zfsu+Dum4LmJ5AFKFoims+wu7bSB6XZQxvatgr9qU+8=
+			Pdp3wvU0CLVp+3Afd6I6QxM36Oe5dQcuavhGP5QJ6Ec=
 			</data>
 		</dict>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Lc95018rJyNBMXLZNeZp9Xik7MqG6z90gETqDYDH1Dg=
+			C41kihAyQxb7hTw0Z8+BzlTrDZmbipRIGQyBzF6lO/c=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -133,14 +331,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Zfd2Qp+6RVpYXp39s1mGBnokvKXsBJX5oa2NdDeRTKI=
+			v6u8YtYjslOLIIb1rrgcOW817fxVEiBaprKuV+f6FpY=
 			</data>
 		</dict>
 		<key>flutter_assets/vm_snapshot_data</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ifsROT9mhiBCDg9Fz43bRMeD+UDipbpQkmeVuQ1jRD4=
+			pKvVVo/CPIJFzUPS2fhLuWOuiKFXCBKbw9g8gmDjVXE=
 			</data>
 		</dict>
 	</dict>
