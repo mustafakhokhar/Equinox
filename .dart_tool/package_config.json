@@ -68,6 +68,12 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "csslib",
+      "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/csslib-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "cupertino_icons",
       "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.5",
       "packageUri": "lib/",
@@ -122,6 +128,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "flutter_staggered_grid_view",
+      "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/flutter_staggered_grid_view-0.6.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///Users/mustafakhokhar/Downloads/flutter/packages/flutter_test",
       "packageUri": "lib/",
@@ -134,16 +146,28 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "freezed_annotation",
+      "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/freezed_annotation-2.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "get",
       "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/get-4.6.5",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
     {
-      "name": "http",
-      "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/http-1.1.0",
+      "name": "html",
+      "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/html-0.15.4",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "http",
+      "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/http-0.13.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
     },
     {
       "name": "http_parser",
@@ -160,6 +184,12 @@
     {
       "name": "js",
       "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/js-0.6.7",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "json_annotation",
+      "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/json_annotation-4.8.1",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
@@ -234,6 +264,12 @@
       "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/path_provider_windows-2.1.7",
       "packageUri": "lib/",
       "languageVersion": "2.18"
+    },
+    {
+      "name": "petitparser",
+      "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/petitparser-5.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
     },
     {
       "name": "platform",
@@ -327,9 +363,9 @@
     },
     {
       "name": "url_launcher",
-      "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/url_launcher-6.1.11",
+      "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/url_launcher-6.1.12",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.0"
     },
     {
       "name": "url_launcher_android",
@@ -363,15 +399,15 @@
     },
     {
       "name": "url_launcher_web",
-      "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/url_launcher_web-2.0.17",
+      "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/url_launcher_web-2.0.18",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "url_launcher_windows",
-      "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/url_launcher_windows-3.0.6",
+      "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/url_launcher_windows-3.0.7",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "uuid",
@@ -416,6 +452,18 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "xml",
+      "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/xml-6.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "youtube_explode_dart",
+      "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/youtube_explode_dart-1.12.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
       "name": "youtube_player_flutter",
       "rootUri": "file:///Users/mustafakhokhar/.pub-cache/hosted/pub.dev/youtube_player_flutter-8.1.2",
       "packageUri": "lib/",
@@ -428,7 +476,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-07-05T12:03:19.818649Z",
+  "generated": "2023-07-11T10:38:06.540846Z",
   "generator": "pub",
   "generatorVersion": "3.0.5"
 }

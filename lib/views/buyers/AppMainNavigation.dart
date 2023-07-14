@@ -60,10 +60,12 @@ class AppNavigationScreen extends StatelessWidget {
           },
         ),
       ),
-      floatingActionButton:
-          FloatingActionButton(child: const Icon(Icons.add), onPressed: () {}, backgroundColor: secondary,),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: secondary,
+        child: const Icon(Icons.add),
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
-    ;
   }
 }

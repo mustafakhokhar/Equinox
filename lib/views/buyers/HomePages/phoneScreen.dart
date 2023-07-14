@@ -1,214 +1,54 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:temp_store/Widgets/headingText.dart';
-import 'package:temp_store/Widgets/youtubePlay.dart';
 import 'package:temp_store/constants/colors.dart';
 import 'package:temp_store/constants/iconPath.dart';
-import 'package:temp_store/views/buyers/FunctionalScreen.dart/product_list.dart';
+import 'package:temp_store/constants/imagePath.dart';
+import 'package:temp_store/views/buyers/FunctionalScreen.dart/ProductListing/product_list.dart';
 
 class PhoneScreen extends StatelessWidget {
   const PhoneScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final List display = [
+    final List Phones = [
       {
         'section': 'Category',
         'tabs': [
-          'NON PTA',
-          'PTA',
-          'JV',
-          'Open Box',
-          'Kit',
-          'With box',
-          'ios Device',
-          'Android Device'
+          {'title': 'PTA', 'icon': icPtaphone, 'onPress': () {}},
+          {'title': 'JV', 'icon': imSimCard, 'onPress': () {}},
+          {'title': 'NON PTA', 'icon': icNonPta, 'onPress': () {}},
+          {'title': 'Open Box', 'icon': icOpenBox, 'onPress': () {}},
+          {'title': 'ios', 'icon': icIos, 'onPress': () {}},
+          {'title': 'Kit', 'icon': icKitPhone, 'onPress': () {}},
+          {'title': 'Android', 'icon': icAndroid, 'onPress': () {}},
+          {'title': 'With box', 'icon': icNewPhone, 'onPress': () {}},
         ],
-        'icons': [
-          icNonPta,
-          icPtaphone,
-          icJVphone,
-          icOpenBox,
-          icKitPhone,
-          icNewPhone,
-          icIos,
-          icAndroid
-        ],
-        'onPress': [() {}, () {}, () {}, () {}, () {}, () {}]
       },
       {
         'section': 'Budget',
         'tabs': [
-          'Phone under 30k',
-          'Phone under 50k',
-          'Phone under 70k',
-          'Phone under 100k',
-          'Phone under 150k',
-          'Phone under 200k',
-          'Phone under 300k',
-          'Phone under 500k'
+          {'title': 'Phone under 30k', 'icon': null, 'onPress': () {}},
+          {'title': 'Phone under 50k', 'icon': null, 'onPress': () {}},
+          {'title': 'Phone under 70k', 'icon': null, 'onPress': () {}},
+          {'title': 'Phone under 100k', 'icon': null, 'onPress': () {}},
+          {'title': 'Phone under 150k', 'icon': null, 'onPress': () {}},
+          {'title': 'Phone under 200k', 'icon': null, 'onPress': () {}},
+          {'title': 'Phone under 300k', 'icon': null, 'onPress': () {}},
+          {'title': 'Phone under 500k', 'icon': null, 'onPress': () {}},
         ],
-        'icons': '',
-        'onPress': [() {}, () {}, () {}, () {}, () {}, () {}, () {}, () {}]
       },
       {
         'section': 'Brand',
-        'tabs': ['Apple', 'Samsung', 'Huawei', 'Oppo', 'Vivo', 'Xiaomi'],
-        'icons': [
-          icAppleLogo,
-          icSamsungLogo,
-          icHuaweiLogo,
-          icOppoLogo,
-          icVivoLogo,
-          icXiaomiLogo,
-        ],
-        'onPress': [() {}, () {}, () {}, () {}, () {}, () {}]
-      },
-      {
-        'section': 'Operating System',
-        'tabs': ['iOS', 'Android'],
-        'icons': [icIos, icAndroid],
-        'onPress': [() {}, () {}]
-      },
-      {
-        'section': 'Color',
         'tabs': [
-          'Black',
-          'White',
-          'Red',
-          'Blue',
-          'Green',
-          'Yellow',
-          'Pink',
-          'Purple',
-          'Orange',
-          'Grey'
+          {'title': 'Apple', 'icon': icAppleLogo, 'onPress': () {}},
+          {'title': 'Samsung', 'icon': icSamsungLogo, 'onPress': () {}},
+          {'title': 'Huawei', 'icon': icHuaweiLogo, 'onPress': () {}},
+          {'title': 'Oppo', 'icon': icOppoLogo, 'onPress': () {}},
+          {'title': 'Vivo', 'icon': icVivoLogo, 'onPress': () {}},
+          {'title': 'Xiaomi', 'icon': icXiaomiLogo, 'onPress': () {}},
         ],
-        'icons': '',
-        'onPress': [
-          () {},
-          () {},
-          () {},
-          () {},
-          () {},
-          () {},
-          () {},
-          () {},
-          () {}
-        ]
       },
-      {
-        'section': 'Type',
-        'tabs': ['Smartphone', 'Tablet', 'Smartwatch'],
-        'icons': '',
-        'onPress': [() {}, () {}, () {}]
-      }
-    ];
-    final List<List<List>> tabs = [
-      [
-        // Name to tab
-        ['Category'],
-        // Text for each button in the tab
-        [
-          'NON PTA',
-          'PTA',
-          'JV',
-          'Open Box',
-          'Kit',
-          'With box',
-          'Damaged',
-          'Abc Car',
-          'Ghasti Car'
-        ],
-        // icons for each button in the tab
-        [
-          Icon(
-            Icons.car_crash,
-            color: Colors.grey[600],
-          ),
-          Icon(
-            Icons.car_crash,
-            color: Colors.grey[600],
-          ),
-          Icon(
-            Icons.car_repair,
-            color: Colors.grey[600],
-          ),
-          Icon(
-            Icons.car_rental,
-            color: Colors.grey[600],
-          ),
-          Icon(
-            Icons.car_crash,
-            color: Colors.grey[600],
-          ),
-          Icon(
-            Icons.car_repair,
-            color: Colors.grey[600],
-          ),
-          Icon(
-            Icons.car_rental,
-            color: Colors.grey[600],
-          ),
-          Icon(
-            Icons.car_crash,
-            color: Colors.grey[600],
-          ),
-          Icon(
-            Icons.car_repair,
-            color: Colors.grey[600],
-          ),
-        ],
-        //On press command for subsequent Tab
-      ],
-      [
-        ['Budget'],
-        [
-          'Phone under 30k',
-          'Phone under 50k',
-          'Phone under 70k',
-          'Phone under 100k',
-          'Phone under 150k',
-          'Phone under 200k',
-          'Phone under 300k',
-          'Phone under 500k'
-        ],
-      ],
-      [
-        ['Brand'],
-        [
-          'Apple',
-          'Samsung',
-          'Nothing',
-          'Oppo',
-          'Vivo',
-          'Huawei',
-          'Motorola',
-          'Infinix',
-          'Xiaomi',
-        ],
-        // icons for each button in the tab
-        [
-          Image.asset(icAppleLogo),
-          Image.asset(icSamsungLogo),
-          Image.asset(icAndroid),
-          Image.asset(icOppoLogo),
-          Image.asset(icVivoLogo),
-          Image.asset(icHuaweiLogo),
-          Image.asset(icAndroid),
-          Image.asset(icAndroid),
-          Image.asset(icXiaomiLogo),
-        ],
-      ],
-      [
-        ['Color'],
-      ],
-      [
-        ['type'],
-      ],
-      [
-        ['Hello'],
-      ]
     ];
     final List devicePTAList = [
       ['iPhone 14 Pro Max', '152k', '187k'],
@@ -218,206 +58,235 @@ class PhoneScreen extends StatelessWidget {
       ['iPhone 13 Pro Max', '151k', '124k'],
     ];
 
-    return ListView(
+    return ListView.builder(
       physics: const BouncingScrollPhysics(),
       padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
-      children: [
-        // --- FIRST SECTION --- [Used Phones]
-        Container(
-          height: MediaQuery.of(context).size.height * 0.4,
-          color: Colors.transparent,
-          child: DefaultTabController(
-              length: display.length,
-              child: Scaffold(
-                appBar: AppBar(
-                  titleSpacing: 0,
-                  elevation: 0,
-                  backgroundColor: CustomColors.appBackgroundColor,
-                  title: const HeadingText(text: 'Browse Used Phones'),
-                  // TAB Options
-                  bottom: TabBar(
+      itemCount: 8,
+      itemBuilder: (context, index) {
+        switch (index) {
+          case 0:
+            return Container(
+              height: MediaQuery.of(context).size.height * 0.4,
+              color: Colors.transparent,
+              child: DefaultTabController(
+                length: Phones.length,
+                child: Scaffold(
+                  appBar: AppBar(
+                    titleSpacing: 0,
+                    elevation: 0,
+                    backgroundColor: CustomColors.appBackgroundColor,
+                    title: const HeadingText(
+                      text: 'Browse Phones',
+                      linkString: 'All Phones',
+                    ),
+
+                    // TAB Options
+                    bottom: TabBar(
                       isScrollable: true,
                       unselectedLabelColor:
                           CustomColors.tabUnSelectedLabelColor,
                       labelColor: CustomColors.tabLabelColor,
                       indicatorSize: TabBarIndicatorSize.tab,
                       indicator: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: CustomColors.buttonUnselectedColor),
+                        borderRadius: BorderRadius.circular(20),
+                        color: CustomColors.buttonUnselectedColor,
+                      ),
                       tabs: List.generate(
-                        display.length,
+                        Phones.length,
                         (index) => Tab(
                           child: Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                display[index]['section'],
-                                style: TextStyle(
-                                    fontSize:
-                                        MediaQuery.of(context).size.width *
-                                            0.038),
-                              )),
-                        ),
-                      )),
-                ),
-                backgroundColor: CustomColors.appBackgroundColor,
-                // Grid View of the tabs
-                body: Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 10, 0, 10),
-                  child: TabBarView(children: [
-                    MainGrid(
-                      tabs: display,
-                      index: 0,
-                    ),
-                    MainGridText(
-                      tabs: display,
-                      index: 1,
-                    ),
-                    MainGrid(
-                      tabs: display,
-                      index: 2,
-                    ),
-                    const Icon(Icons.food_bank),
-                    const Icon(Icons.woman),
-                    const Icon(Icons.woman),
-                  ]),
-                ),
-              )),
-        ),
-        // --- Second SECTION --- [Our Offerings]
-        Container(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          height: MediaQuery.of(context).size.height * 0.34,
-          child: Column(
-            children: [
-              const HeadingText(text: 'Equinox\'s Offerings'),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.12,
-                    child: Column(
-                      children: [
-                        const ListTile(
-                          title: Text('SELL IT FOR ME'),
-                          subtitle: Text('We sell your gadgets for you!'),
-                          trailing: Icon(
-                            Icons.arrow_forward_ios,
-                            color: secondary,
+                            alignment: Alignment.center,
+                            child: Text(
+                              Phones[index]['section'],
+                              style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.038,
+                              ),
+                            ),
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              'Hassel Free',
-                              style: TextStyle(
-                                color: CustomColors.buttonUnselectedColor,
-                              ),
-                            ),
-                            const Icon(
-                              Icons.more_vert,
-                              color: secondary,
-                              size: 12,
-                            ),
-                            Text(
-                              'Secure',
-                              style: TextStyle(
-                                color: CustomColors.buttonUnselectedColor,
-                              ),
-                            ),
-                            const Icon(
-                              Icons.more_vert,
-                              color: secondary,
-                              size: 12,
-                            ),
-                            Text(
-                              'Best Price',
-                              style: TextStyle(
-                                color: CustomColors.buttonUnselectedColor,
-                              ),
-                            ),
-                          ],
+                      ),
+                    ),
+                  ),
+                  backgroundColor: CustomColors.appBackgroundColor,
+                  // Grid View of the tabs
+                  body: Padding(
+                    padding: const EdgeInsets.fromLTRB(5, 10, 0, 10),
+                    child: TabBarView(
+                      children: [
+                        MainGrid(
+                          tabs: Phones,
+                          index: 0,
+                          crossAxisCount: 2,
+                          childAspectRatio: MediaQuery.of(context).size.width *
+                              2.8 /
+                              (MediaQuery.of(context).size.height),
+                        ),
+                        MainGridText(
+                          tabs: Phones,
+                          index: 1,
+                        ),
+                        MainGrid(
+                          tabs: Phones,
+                          index: 2,
+                          crossAxisCount: 2,
+                          childAspectRatio: MediaQuery.of(context).size.width *
+                              2.8 /
+                              (MediaQuery.of(context).size.height),
                         ),
                       ],
                     ),
                   ),
                 ),
               ),
-              Row(
+            );
+          case 1:
+            return Container(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              height: MediaQuery.of(context).size.height * 0.36,
+              child: Column(
                 children: [
-                  Expanded(
+                  const HeadingText(
+                    text: 'Equinox\'s Offerings',
+                    linkString: '',
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      child: const ListTile(
-                        title: Text('BUY IT FOR ME'),
-                        subtitle: Text('We buy your gadgets for you!'),
-                        trailing: Icon(
-                          Icons.arrow_forward_ios,
-                          color: secondary,
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.12,
+                        child: Column(
+                          children: [
+                            const ListTile(
+                              title: Text('SELL IT FOR ME'),
+                              subtitle: Text('We sell your gadgets for you!'),
+                              trailing: Icon(
+                                Icons.arrow_forward_ios,
+                                color: secondary,
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  'Hassel Free',
+                                  style: TextStyle(
+                                    color: CustomColors.buttonUnselectedColor,
+                                  ),
+                                ),
+                                const Icon(
+                                  Icons.more_vert,
+                                  color: secondary,
+                                  size: 12,
+                                ),
+                                Text(
+                                  'Secure',
+                                  style: TextStyle(
+                                    color: CustomColors.buttonUnselectedColor,
+                                  ),
+                                ),
+                                const Icon(
+                                  Icons.more_vert,
+                                  color: secondary,
+                                  size: 12,
+                                ),
+                                Text(
+                                  'Best Price',
+                                  style: TextStyle(
+                                    color: CustomColors.buttonUnselectedColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ),
-                  Expanded(
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      child: const ListTile(
-                        title: Text('REPAIR IT FOR ME'),
-                        subtitle: Text('We repair your gadgets for you!'),
-                        trailing: Icon(
-                          Icons.arrow_forward_ios,
-                          color: secondary,
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                          child: const ListTile(
+                            title: Text('BUY IT FOR ME'),
+                            subtitle: Text('We buy your gadgets for you!'),
+                            trailing: Icon(
+                              Icons.arrow_forward_ios,
+                              color: secondary,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                      Expanded(
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                          child: const ListTile(
+                            title: Text('REPAIR IT FOR ME'),
+                            subtitle: Text('We repair your gadgets for you!'),
+                            trailing: Icon(
+                              Icons.arrow_forward_ios,
+                              color: secondary,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
-          ),
-        ),
-        // --- ADVERTISEMENT ---
-        const AdsPlaceHolder(),
-        // --- Third SECTION --- [Featured Phones]
-        Container(
-          color: const Color.fromARGB(0, 0, 0, 0),
-          height: MediaQuery.of(context).size.height * 0.37,
-          child: Column(
-            children: [
-              const HeadingText(text: 'Featured Phones'),
-              Expanded(
-                child: FeaturedProductCarousel(tabs: tabs),
+            );
+          case 2:
+            return const AdsPlaceHolder();
+          case 3:
+            return Container(
+              color: const Color.fromARGB(0, 0, 0, 0),
+              height: MediaQuery.of(context).size.height * 0.4,
+              child: Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: HeadingText(text: 'Featured Phones'),
+                  ),
+                  Expanded(
+                    child: FeaturedProductCarousel(tabs: Phones),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-        // --- Fourth SECTION --- [Phones Listing]
-        Container(
-          color: Colors.transparent,
-          height: MediaQuery.of(context).size.height * 0.37,
-          child: Column(
-            children: [
-              const HeadingText(text: 'Phones Listing'),
-              Expanded(
-                child: NormalProductCarousel(tabs: tabs),
+            );
+          case 4:
+            return Container(
+              color: Colors.transparent,
+              height: MediaQuery.of(context).size.height * 0.4,
+              child: Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: HeadingText(text: 'Phones Listing'),
+                  ),
+                  Expanded(
+                    child: NormalProductCarousel(tabs: Phones),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-        // --- Fifth SECTION --- [Youtube]
-        const YoutubeWidget(),
-        // --- Sixth SECTION --- [PTA Tax]
-        CurrentPTATaxWidget(devicePTAList: devicePTAList),
-        // --- ADVERTISEMENT ---
-        const AdsPlaceHolder(),
-      ],
+            );
+          case 5:
+            return const YoutubeWidget();
+          case 6:
+            return CurrentPTATaxWidget(devicePTAList: devicePTAList);
+          case 7:
+            return const AdsPlaceHolder();
+          default:
+            return const SizedBox.shrink();
+        }
+      },
     );
   }
 }
@@ -425,11 +294,11 @@ class PhoneScreen extends StatelessWidget {
 class NormalProductCarousel extends StatelessWidget {
   const NormalProductCarousel({
     Key? key,
-    required List<List<List>> tabs,
+    required List tabs,
   })  : _tabs = tabs,
         super(key: key);
 
-  final List<List<List>> _tabs;
+  final List _tabs;
 
   @override
   Widget build(BuildContext context) {
@@ -443,7 +312,7 @@ class NormalProductCarousel extends StatelessWidget {
             3 /
             (MediaQuery.of(context).size.height),
         children: List.generate(
-          _tabs[0][1].length,
+          _tabs.length,
           (index) => GestureDetector(
               child: Card(
                   semanticContainer: true,
@@ -465,7 +334,7 @@ class NormalProductCarousel extends StatelessWidget {
                           child: FittedBox(
                             fit: BoxFit.fitWidth,
                             child: Text(
-                              _tabs[0][1][index],
+                              _tabs[0]['tabs'][index]['title'],
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize:
@@ -481,7 +350,7 @@ class NormalProductCarousel extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                           child: Text(
-                            _tabs[0][1][index],
+                            _tabs[0]['tabs'][index]['title'],
                             style: TextStyle(
                               color: Colors.black,
                               fontSize:
@@ -496,7 +365,7 @@ class NormalProductCarousel extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                           child: Text(
-                            _tabs[0][1][index],
+                            _tabs[0]['tabs'][index]['title'],
                             style: TextStyle(
                               color: Colors.grey[600],
                               fontSize:
@@ -568,11 +437,11 @@ class NormalProductCarousel extends StatelessWidget {
 class FeaturedProductCarousel extends StatelessWidget {
   const FeaturedProductCarousel({
     Key? key,
-    required List<List<List>> tabs,
+    required List tabs,
   })  : _tabs = tabs,
         super(key: key);
 
-  final List<List<List>> _tabs;
+  final List _tabs;
 
   @override
   Widget build(BuildContext context) {
@@ -586,7 +455,7 @@ class FeaturedProductCarousel extends StatelessWidget {
             3 /
             (MediaQuery.of(context).size.height),
         children: List.generate(
-          _tabs[0][1].length,
+          _tabs.length,
           (index) => Stack(children: [
             GestureDetector(
               child: Card(
@@ -599,7 +468,7 @@ class FeaturedProductCarousel extends StatelessWidget {
                   child: Column(
                     children: [
                       Image.asset(
-                        icIphone,
+                        _tabs[0]['tabs'][index]['icon'],
                         alignment: Alignment.center,
                         fit: BoxFit.contain,
                         height: MediaQuery.of(context).size.height * 0.17,
@@ -611,7 +480,7 @@ class FeaturedProductCarousel extends StatelessWidget {
                           child: FittedBox(
                             fit: BoxFit.fitWidth,
                             child: Text(
-                              _tabs[0][1][index],
+                              _tabs[0]['tabs'][index]['title'],
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize:
@@ -627,7 +496,7 @@ class FeaturedProductCarousel extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                           child: Text(
-                            _tabs[0][1][index],
+                            _tabs[0]['tabs'][index]['title'],
                             style: TextStyle(
                               color: Colors.black,
                               fontSize:
@@ -642,7 +511,7 @@ class FeaturedProductCarousel extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                           child: Text(
-                            _tabs[0][1][index],
+                            _tabs[0]['tabs'][index]['title'],
                             style: TextStyle(
                               color: Colors.grey[600],
                               fontSize:
@@ -728,7 +597,7 @@ class AdsPlaceHolder extends StatelessWidget {
       padding: const EdgeInsets.only(top: 20, bottom: 10),
       child: Container(
         padding: const EdgeInsets.only(top: 10, bottom: 10),
-        color: Colors.indigo[300],
+        color: CustomColors.appBarColor,
         height: 100,
         child: const Align(
             alignment: Alignment.center,
@@ -751,42 +620,28 @@ class YoutubeWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
       color: Colors.transparent,
-      height: MediaQuery.of(context).size.height * 0.34,
-      child: Column(
+      height: MediaQuery.of(context).size.height * 0.35,
+      child: const Column(
         children: [
           Align(
             alignment: Alignment.centerLeft,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const HeadingText(text: 'Tech Reviews'),
-                Text(
-                  'see all',
-                  style: TextStyle(
-                    color: Colors.blue[900],
-                    fontSize: MediaQuery.of(context).size.width * 0.05,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-              ],
-            ),
+            child: HeadingText(text: 'Tech Reviews'),
           ),
-          Container(
-            padding: const EdgeInsets.only(top: 10, bottom: 10),
-            child: Column(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: const YoutubeVideo(
-                      "https://www.youtube.com/watch?v=zwEi3XIZTwc"),
-                ),
-              ],
-            ),
-          )
+          // Container(
+          //   padding: const EdgeInsets.only(top: 10, bottom: 10),
+          //   child: Column(
+          //     children: [
+          //       Container(
+          //         decoration: BoxDecoration(
+          //           color: Colors.white,
+          //           borderRadius: BorderRadius.circular(20),
+          //         ),
+          //         child: const YoutubeVideo(
+          //             "https://www.youtube.com/watch?v=zwEi3XIZTwc"),
+          //       ),
+          //     ],
+          //   ),
+          // )
         ],
       ),
     );
@@ -884,11 +739,11 @@ class MainGridText extends StatelessWidget {
     required List tabs,
     required int index,
   })  : _tabs = tabs,
-        count = index,
+        section = index,
         super(key: key);
 
   final List _tabs;
-  final count;
+  final section;
 
   @override
   Widget build(BuildContext context) {
@@ -902,11 +757,11 @@ class MainGridText extends StatelessWidget {
               6.5 /
               (MediaQuery.of(context).size.height),
           children: List.generate(
-              _tabs[count]['tabs'].length,
+              _tabs[section]['tabs'].length,
               (index) => GestureDetector(
                     onTap: () {},
                     child: Text(
-                      _tabs[count]['tabs'][index],
+                      _tabs[section]['tabs'][index]['title'],
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           fontSize: MediaQuery.of(context).size.height * 0.02),
@@ -921,12 +776,18 @@ class MainGrid extends StatelessWidget {
     Key? key,
     required List tabs,
     required int index,
+    required int crossAxisCount,
+    required double childAspectRatio,
   })  : _tabs = tabs,
-        count = index,
+        section = index,
+        crossAxisCount = crossAxisCount,
+        childAspectRatio = childAspectRatio,
         super(key: key);
 
   final List _tabs;
-  final count;
+  final section;
+  final int crossAxisCount;
+  final double childAspectRatio;
 
   @override
   Widget build(BuildContext context) {
@@ -955,14 +816,12 @@ class MainGrid extends StatelessWidget {
 
     return GridView.builder(
       scrollDirection: Axis.horizontal,
-      itemCount: _tabs[count]['tabs'].length,
+      itemCount: _tabs[section]['tabs'].length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+        crossAxisCount: crossAxisCount,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
-        childAspectRatio: MediaQuery.of(context).size.width *
-            2.8 /
-            (MediaQuery.of(context).size.height),
+        childAspectRatio: childAspectRatio,
       ),
       itemBuilder: (context, index) {
         return Padding(
@@ -990,7 +849,7 @@ class MainGrid extends StatelessWidget {
               children: [
                 ColorFiltered(
                   colorFilter: greyscale,
-                  child: Image.asset(_tabs[count]['icons'][index],
+                  child: Image.asset(_tabs[section]['tabs'][index]['icon'],
                       fit: BoxFit.contain,
                       // colorBlendMode: BlendMode.softLight,
                       // color: CustomColors.GridImgColor,
@@ -1000,9 +859,9 @@ class MainGrid extends StatelessWidget {
                 FittedBox(
                   fit: BoxFit.fitWidth,
                   child: Text(
-                    _tabs[count]['tabs'][index],
+                    _tabs[section]['tabs'][index]['title'],
                     textAlign: TextAlign.center,
-                    maxLines: 1,
+                    maxLines: 2,
                     style: TextStyle(
                         color: CustomColors.GridTitleColor,
                         fontSize: MediaQuery.of(context).size.width * 0.03),

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:get/get.dart';
 import 'package:temp_store/providers/productImgProvider.dart';
 
@@ -34,13 +32,5 @@ class ProductDetailsController extends GetxController {
     }
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 }
