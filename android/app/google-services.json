@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "154037024443",
+    "project_id": "equinox-db",
+    "storage_bucket": "equinox-db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154037024443:android:f230e92d8c49403bfddb9e",
+        "android_client_info": {
+          "package_name": "com.example.temp_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154037024443-jv80qphedaph3n3aor958ua29uultgv3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChtRqVdZpPsVQhyspetsYVywNxDFPW82E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154037024443-jv80qphedaph3n3aor958ua29uultgv3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
