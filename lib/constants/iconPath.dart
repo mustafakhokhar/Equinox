@@ -19,3 +19,8 @@ const icNonPta = 'assets/icons/nonPTA.png';
 const icPtaphone = 'assets/icons/PTAphone.png';
 const icJVphone = 'assets/icons/softwarePhone.png';
 const icWhatsapp = 'assets/icons/whatsapp.png';
+
+// 
+const icGoogle = 'assets/icons/google.png';
+const icFacebook = 'assets/icons/facebook.png';
+const icApple = 'assets/icons/apple.png';

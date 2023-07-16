@@ -3,6 +3,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
 import 'package:temp_store/constants/colors.dart';
 import 'package:temp_store/views/buyers/NavScreens/sell_now.dart';
+import 'package:temp_store/views/onBoardingScreens/SignIn.dart';
 
 import '../../controllers/app_main_navigation_controller.dart';
 import 'NavScreens/chat.dart';
@@ -25,7 +26,8 @@ class AppNavigationScreen extends StatelessWidget {
       const HomeScreen(),
       const MyAds(),
       const SellNowPage(),
-      const chatScreen(),
+      // const chatScreen(),
+      SignInScreen(),
       const ProfilePage(),
     ];
 
