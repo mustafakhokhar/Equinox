@@ -1,139 +1,288 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:temp_store/Widgets/FormVerification.dart';
 import 'package:temp_store/constants/colors.dart';
-import 'package:temp_store/constants/iconPath.dart';
+import 'package:temp_store/controllers/UIcontrollers/EditProfileController.dart';
+import 'package:temp_store/controllers/userController.dart';
 
-class UpdateProfileScreen extends StatelessWidget {
-  const UpdateProfileScreen({Key? key}) : super(key: key);
+class EditProfilePage extends StatelessWidget {
+  const EditProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // final controller = Get.put(ProfileController());
+    EditProfileController controller = Get.put(EditProfileController());
+    final ImagePicker _imagePicker = ImagePicker();
+    XFile? _profilePicture;
+
+    Future<void> _pickImage(ImageSource source) async {
+      final pickedFile = await _imagePicker.pickImage(source: source);
+      controller.obj = pickedFile!.path;
+      print('Picked file: ${pickedFile!.path}');
+      print('object: ${controller.imagePath}');
+    }
+
+    final _formKey = GlobalKey<FormState>();
+
+    bool firstSubmit = false;
+    final userController = Get.find<UserController>();
+    String name = '',
+        phone = '',
+        email = userController.user!.email.toString(),
+        address = '';
+
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
+        backgroundColor: CustomColors.appBackgroundColor,
+        elevation: 0.5,
+        leadingWidth: 75,
+        centerTitle: true,
+        leading: TextButton(
             onPressed: () => Get.back(),
-            icon: const Icon(Icons.arrow_back_ios_new_rounded)),
-        title: Text('tEditProfile', style: Theme.of(context).textTheme.headlineMedium),
+            child: const Text('Cancel',
+                maxLines: 1,
+                style: TextStyle(color: Colors.redAccent, fontSize: 16))),
+        title:
+            const Text('Edit Profile', style: TextStyle(color: Colors.black)),
+        actions: [
+          TextButton(
+            onPressed: () async {
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
+                print(
+                    "Profile Updated Success: Name: $name, Phone: $phone, Email: $email, Address: ${address.trim()}");
+                userController.updateUserProfile(name.trim(), address.trim(),
+                    controller.imagePath, phone.trim());
+              }
+              firstSubmit = true;
+            },
+            child: const Text(
+              'Save',
+              style: TextStyle(color: Colors.indigo, fontSize: 17),
+            ),
+          ),
+        ],
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              // -- IMAGE with ICON
-              Stack(
-                children: [
-                  SizedBox(
-                    width: 120,
-                    height: 120,
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: const Image(image: AssetImage(icKitPhone))),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      width: 35,
-                      height: 35,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: primary),
-                      child: const Icon(Icons.camera,
-                          color: Colors.black, size: 20),
-                    ),
-                  ),
-                ],
+      backgroundColor: CustomColors.appBackgroundColor,
+      body: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        children: [
+          // Image and Bottom Sheet
+          Center(
+            child: Obx(
+              () => CircleAvatar(
+                backgroundColor: Colors.white,
+                radius: 60,
+                backgroundImage: Get.find<EditProfileController>()
+                            .imagePath !=
+                        ''
+                    ? FileImage(File(
+                            Get.find<EditProfileController>().imagePath))
+                        as ImageProvider<Object>
+                    : NetworkImage(
+                        Get.find<UserController>().user!.image.toString()),
               ),
-              const SizedBox(height: 50),
+            ),
+          ),
+          TextButton(
+              onPressed: () {
+                Get.bottomSheet(Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                  ),
+                  height: MediaQuery.of(context).size.height * 0.25,
+                  width: double.infinity,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Divider(
+                        indent: MediaQuery.of(context).size.width * 0.45,
+                        thickness: 4,
+                        endIndent: MediaQuery.of(context).size.width * 0.45,
+                      ),
+                      ListTile(
+                        leading: const Icon(CupertinoIcons.photo),
+                        title: const Text('Choose from Library'),
+                        onTap: () {
+                          Navigator.pop(context);
+                          _pickImage(ImageSource.gallery);
+                        },
+                      ),
+                      ListTile(
+                        leading: const Icon(CupertinoIcons.photo_camera),
+                        title: const Text('Take Photo'),
+                        onTap: () {
+                          Navigator.pop(context);
+                          _pickImage(ImageSource.camera);
+                        },
+                      ),
+                      ListTile(
+                        leading: const Icon(
+                          CupertinoIcons.trash,
+                          color: Colors.redAccent,
+                        ),
+                        title: const Text(
+                          'Remove Current Picture',
+                          style: TextStyle(color: Colors.redAccent),
+                        ),
+                        onTap: () {
+                          // Navigator.pop(context);
+                          // _pickImage(ImageSource.camera);
+                        },
+                      ),
+                    ],
+                  ),
+                ));
+              },
+              child: const Text(
+                'Edit Picture',
+                style: TextStyle(
+                    color: Colors.blueAccent, fontWeight: FontWeight.w700),
+              )),
+          const Divider(),
 
-              // -- Form Fields
-              Form(
-                child: Column(
+          // -- Form Fields
+          Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Row(
                   children: [
-                    TextFormField(
-                      decoration: const InputDecoration(
-                          label: Text('tFullName'),
-                          prefixIcon: Icon(Icons.usb)),
+                    const SizedBox(
+                      width: 65,
+                      child: Text('Name:'),
                     ),
-                    const SizedBox(height: 20),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                          label: Text('tEmail'),
-                          prefixIcon: Icon(Icons.email)),
+                    const SizedBox(
+                      width: 25,
                     ),
-                    const SizedBox(height: 20),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                          label: Text('tPhoneNo'),
-                          prefixIcon: Icon(Icons.access_alarm_rounded)),
-                    ),
-                    const SizedBox(height: 20),
-                    TextFormField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        label: const Text('tPassword'),
-                        prefixIcon: const Icon(Icons.fingerprint),
-                        suffixIcon: IconButton(
-                            icon: const Icon(Icons.group_work),
-                            onPressed: () {}),
+                    Expanded(
+                      child: TextFormField(
+                        initialValue: userController.user!.name,
+                        onSaved: (newName) => name = newName!,
+                        onChanged: (name) {
+                          if (firstSubmit) _formKey.currentState!.validate();
+                        },
+                        validator: (name) {
+                          if (name!.isEmpty) {
+                            return kNameNullError;
+                          } else if (name.isNotEmpty &&
+                              !nameValidationRegExp.hasMatch(name)) {
+                            return kInvalidNameError;
+                          }
+                        },
+                        decoration: const InputDecoration(
+                            border: InputBorder.none, hintText: 'Full Name'),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-
-                    // -- Form Submit Button
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () =>
-                            Get.to(() => const UpdateProfileScreen()),
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: primary,
-                            side: BorderSide.none,
-                            shape: const StadiumBorder()),
-                        child: const Text('tEditProfile',
-                            style: TextStyle(color: secondary)),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-
-                    // -- Created Date and Delete Button
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text.rich(
-                          TextSpan(
-                            text: 'tJoined',
-                            style: TextStyle(fontSize: 12),
-                            children: [
-                              TextSpan(
-                                  text: 'tJoinedAt',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 12))
-                            ],
-                          ),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  Colors.redAccent.withOpacity(0.1),
-                              elevation: 0,
-                              foregroundColor: Colors.red,
-                              shape: const StadiumBorder(),
-                              side: BorderSide.none),
-                          child: const Text('tDeleteAccount'),
-                        ),
-                      ],
                     )
                   ],
                 ),
-              ),
-            ],
+                const Divider(),
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: 65,
+                      child: Text('Phone:'),
+                    ),
+                    const SizedBox(
+                      width: 25,
+                    ),
+                    Expanded(
+                      child: TextFormField(
+                        initialValue: userController.user!.phone,
+                        onSaved: (newNumber) => phone = newNumber!,
+                        onChanged: (number) {
+                          if (firstSubmit) _formKey.currentState!.validate();
+                        },
+                        validator: (number) {
+                          if (number!.isEmpty) {
+                            return kPhoneNullError;
+                          } else if (number.isNotEmpty &&
+                              !phoneValidationRegExp.hasMatch(number)) {
+                            return kPhoneInvalidError;
+                          }
+                        },
+                        decoration: const InputDecoration(
+                            border: InputBorder.none, hintText: 'Enter Number'),
+                      ),
+                    )
+                  ],
+                ),
+                const Divider(),
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: 65,
+                      child: Text('Email:'),
+                    ),
+                    const SizedBox(
+                      width: 25,
+                    ),
+                    Expanded(
+                        child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Text(
+                        userController.user!.email.toString(),
+                        style:
+                            const TextStyle(color: Colors.grey, fontSize: 16),
+                      ),
+                    ))
+                  ],
+                ),
+                const Divider(),
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: 65,
+                      child: Text('Location:'),
+                    ),
+                    const SizedBox(
+                      width: 25,
+                    ),
+                    Expanded(
+                      child: TextFormField(
+                        initialValue: userController.user!.address,
+                        onSaved: (newAddress) => address = newAddress!,
+                        onChanged: (address) {
+                          if (firstSubmit) _formKey.currentState!.validate();
+                        },
+                        keyboardType: TextInputType.multiline,
+                        maxLines: null,
+                        decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Add Shop Location'),
+                      ),
+                    )
+                  ],
+                ),
+                const Divider(),
+                // -- Created Date and Delete Button
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text.rich(
+                      TextSpan(
+                        text: 'Joined: ',
+                        style: TextStyle(fontSize: 12),
+                        children: [
+                          TextSpan(
+                              text: 'xyz',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 12))
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

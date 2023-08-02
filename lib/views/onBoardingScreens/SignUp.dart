@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:temp_store/Widgets/FormVerification.dart';
 import 'package:temp_store/constants/colors.dart';
-import 'package:temp_store/constants/iconPath.dart';
-import 'package:temp_store/views/onBoardingScreens/SignUp.dart';
+import 'package:temp_store/controllers/authController.dart';
+
+AuthController authController = Get.find();
 
 const headingStyle = TextStyle(
   fontSize: (28),
@@ -67,18 +69,18 @@ class SignUpScreen extends StatelessWidget {
                   ],
                 ),
                 // SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      SocialCard(icon: Image.asset(icFacebook), press: () {}),
-                      SocialCard(icon: Image.asset(icGoogle), press: () {}),
-                      SocialCard(icon: Image.asset(icApple), press: () {}),
-                    ],
-                  ),
-                ),
+                // Padding(
+                //   padding:
+                //       const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                //     children: [
+                //       SocialCard(icon: Image.asset(icFacebook), press: () {}),
+                //       SocialCard(icon: Image.asset(icGoogle), press: () {}),
+                //       SocialCard(icon: Image.asset(icApple), press: () {}),
+                //     ],
+                //   ),
+                // ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                 const Text(
                   "By continuing your confirm that you agree \nwith our Term and Condition",
@@ -102,7 +104,7 @@ class _SignFormState extends State<SignForm> {
   final _formKey = GlobalKey<FormState>();
   final List<String> errors = [];
 
-  late String name = '', phone = '', email = '', password = '';
+  String name = '', phone = '', email = '', password = '';
 
   bool firstSubmit = false;
 
@@ -139,8 +141,8 @@ class _SignFormState extends State<SignForm> {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 print(
-                    "SignedUp Success: Name: $name, Phone: $phone,Email: $email, Password: $password");
-                // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                    "SignedUp Success: Name: $name, Phone: $phone, Email: $email, Password: $password");
+                authController.signUpWithEmail(email, password, name, phone);
               }
               firstSubmit = true;
             },
@@ -296,11 +298,7 @@ class NoAccountText extends StatelessWidget {
               "Sign Up",
               style: TextStyle(color: primary),
             ),
-            onPressed: () {
-              // Navigator.push(context, MaterialPageRoute(builder: (context) {
-              //   return const SignUpScreen();
-              // }));
-            }),
+            onPressed: () {}),
       ],
     );
   }

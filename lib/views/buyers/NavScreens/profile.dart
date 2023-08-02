@@ -2,30 +2,27 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:temp_store/constants/colors.dart';
-import 'package:temp_store/constants/iconPath.dart';
+import 'package:temp_store/controllers/authController.dart';
+import 'package:temp_store/controllers/userController.dart';
 import 'package:temp_store/views/buyers/ProfilePages/ContactUs.dart';
 import 'package:temp_store/views/buyers/ProfilePages/EditProfile.dart';
 import 'package:temp_store/views/buyers/ProfilePages/Favorites.dart';
 import 'package:temp_store/views/buyers/ProfilePages/MyCart.dart';
 import 'package:temp_store/views/buyers/ProfilePages/OrdersHistory.dart';
 import 'package:temp_store/views/buyers/ProfilePages/Settings.dart';
+import 'package:temp_store/views/onBoardingScreens/SignIn.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    AuthController authController = Get.find();
+    UserController userController = Get.find();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: CustomColors.appBarColor,
-        // leading: IconButton(
-        //     onPressed: () {},
-        //     icon: const Icon(Icons.arrow_back_ios_new_rounded)),
         title: const Text('Profile', style: TextStyle(color: Colors.white)),
-        // actions: [
-        //   IconButton(onPressed: () {}, icon: Icon(Icons.mobile_friendly))
-        // ],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -33,83 +30,88 @@ class ProfilePage extends StatelessWidget {
           child: Column(
             children: [
               /// -- IMAGE
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Stack(
+              Obx(() => Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Container(
-                        color: Colors.amber,
+                      SizedBox(
+                        // color: primary,
                         width: MediaQuery.of(context).size.width * 0.3,
                         height: MediaQuery.of(context).size.width * 0.3,
                         child: ClipRRect(
-                            borderRadius: BorderRadius.circular(100),
-                            child: const Image(image: AssetImage(icKitPhone))),
+                            borderRadius: BorderRadius.circular(0),
+                            child: Image.network(userController
+                                        .user?.image ==
+                                    ''
+                                ? 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'
+                                : userController.user?.image ??
+                                    'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png')),
                       ),
-                      // Upload Button
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Container(
-                          width: 35,
-                          height: 35,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              color: primary),
-                          child: const Icon(
-                            Icons.file_upload_outlined,
-                            color: Colors.white,
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Mustafa Khokhar',
-                          style: Theme.of(context).textTheme.headlineSmall),
-                      const Text('@mustafa_khokhar',
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500)),
-                      const SizedBox(height: 10),
-                      SizedBox(
-                        width: 200,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              CupertinoPageRoute(
-                                builder: (context) =>
-                                    const UpdateProfileScreen(),
+                      const SizedBox(width: 10),
+                      Expanded(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // User Name
+                          Text(
+                              userController.user?.name == ''
+                                  ? 'User Name'
+                                  : userController.user?.name ?? 'User Name',
+                              style: Theme.of(context).textTheme.headlineSmall),
+                          // User Subtitle
+                          Text(
+                              userController.user?.phone == ''
+                                  ? 'Add Mobile Number'
+                                  : userController.user?.phone ??
+                                      'Add Mobile Number',
+                              style: const TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500)),
+                          const SizedBox(height: 10),
+                          if (authController.user?.uid == null) ...[
+                            SizedBox(
+                              width: 200,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Get.to(SignInScreen());
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: primary,
+                                    side: BorderSide.none,
+                                    shape: const StadiumBorder()),
+                                child: const Text('Login',
+                                    style: TextStyle(color: Colors.white)),
                               ),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: primary,
-                              side: BorderSide.none,
-                              shape: const StadiumBorder()),
-                          child: const Text('Edit Profile',
-                              style: TextStyle(color: Colors.white)),
-                        ),
-                      ),
+                            ),
+                          ],
+                          if (authController.user?.uid != null) ...[
+                            SizedBox(
+                              width: 200,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Get.to(EditProfilePage());
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: primary,
+                                    side: BorderSide.none,
+                                    shape: const StadiumBorder()),
+                                child: const Text('Edit Profile',
+                                    style: TextStyle(color: Colors.white)),
+                              ),
+                            ),
+                          ],
+                        ],
+                      ))
                     ],
-                  ))
-                ],
-              ),
+                  )),
               const SizedBox(height: 10),
               const Divider(
                 thickness: 1,
               ),
               const SizedBox(height: 10),
 
-              /// -- MENU
+              /// Favorites
               ProfileMenuWidget(
                   title: "Favourites",
                   icon: Icons.favorite_border,
@@ -121,6 +123,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                     );
                   }),
+              // My Cart
               ProfileMenuWidget(
                   title: "My Cart",
                   icon: Icons.shopping_bag_outlined,
@@ -132,6 +135,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                     );
                   }),
+              // My Orders
               ProfileMenuWidget(
                   title: "My Orders",
                   icon: Icons.shopping_cart_outlined,
@@ -143,8 +147,11 @@ class ProfilePage extends StatelessWidget {
                       ),
                     );
                   }),
+              // Settings
               ProfileMenuWidget(
-                  title: "Settings", icon: Icons.settings, onPress: () {
+                  title: "Settings",
+                  icon: Icons.settings,
+                  onPress: () {
                     Navigator.push(
                       context,
                       CupertinoPageRoute(
@@ -156,8 +163,11 @@ class ProfilePage extends StatelessWidget {
                 thickness: 1,
               ),
               const SizedBox(height: 10),
+              // Contact Us
               ProfileMenuWidget(
-                  title: "Contact Us", icon: Icons.info_outline, onPress: () {
+                  title: "Contact Us",
+                  icon: Icons.info_outline,
+                  onPress: () {
                     Navigator.push(
                       context,
                       CupertinoPageRoute(
@@ -165,32 +175,49 @@ class ProfilePage extends StatelessWidget {
                       ),
                     );
                   }),
+              // Logout
               ProfileMenuWidget(
                   title: "Logout",
                   icon: Icons.power_settings_new_outlined,
                   textColor: Colors.red,
                   endIcon: false,
                   onPress: () {
-                    Get.defaultDialog(
-                      title: "LOGOUT",
-                      titleStyle: const TextStyle(fontSize: 20),
-                      content: const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 15.0),
-                        child: Text("Are you sure, you want to Logout?"),
-                      ),
-                      confirm: Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {},
+                    if (authController.user?.uid != null ||
+                        userController.user?.email != null) {
+                      Get.defaultDialog(
+                        title: "LOGOUT",
+                        titlePadding: EdgeInsets.symmetric(vertical: 20),
+                        titleStyle: const TextStyle(fontSize: 20),
+                        content:
+                            const Text("Are you sure, you want to Logout?"),
+                        confirm: ElevatedButton(
+                          onPressed: () {
+                            authController.signOut();
+                            Get.back();
+                          },
                           // AuthenticationRepository.instance.logout(),
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.redAccent,
                               side: BorderSide.none),
                           child: const Text("Yes"),
                         ),
-                      ),
-                      cancel: OutlinedButton(
-                          onPressed: () => Get.back(), child: const Text("No")),
-                    );
+                        cancel: OutlinedButton(
+                            onPressed: () => Get.back(),
+                            child: const Text("No")),
+                      );
+                    } else {
+                      Get.defaultDialog(
+                        titlePadding: EdgeInsets.symmetric(vertical: 20),
+                        title: "You Kiddin' Me?",
+                        titleStyle: const TextStyle(
+                          fontSize: 20,
+                        ),
+                        content: Text("Sign-In first! 😏"),
+                        cancel: OutlinedButton(
+                            onPressed: () => Get.back(),
+                            child: const Text("Okay")),
+                      );
+                    }
                   }),
             ],
           ),

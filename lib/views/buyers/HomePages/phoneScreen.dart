@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:temp_store/Widgets/headingText.dart';
 import 'package:temp_store/constants/colors.dart';
 import 'package:temp_store/constants/iconPath.dart';
 import 'package:temp_store/constants/imagePath.dart';
+import 'package:temp_store/controllers/phoneListingController.dart';
 import 'package:temp_store/views/buyers/FunctionalScreen.dart/ProductListing/product_list.dart';
 
 class PhoneScreen extends StatelessWidget {
@@ -11,13 +13,24 @@ class PhoneScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // PhoneListingController controller = Get.put(PhoneListingController());
     final List Phones = [
       {
         'section': 'Category',
         'tabs': [
-          {'title': 'PTA', 'icon': icPtaphone, 'onPress': () {}},
+          {
+            'title': 'PTA',
+            'icon': icPtaphone,
+            'filterKey': 'pta',
+            'filterValue': true,
+          },
           {'title': 'JV', 'icon': imSimCard, 'onPress': () {}},
-          {'title': 'NON PTA', 'icon': icNonPta, 'onPress': () {}},
+          {
+            'title': 'NON PTA',
+            'icon': icNonPta,
+            'filterKey': 'pta',
+            'filterValue': false,
+          },
           {'title': 'Open Box', 'icon': icOpenBox, 'onPress': () {}},
           {'title': 'ios', 'icon': icIos, 'onPress': () {}},
           {'title': 'Kit', 'icon': icKitPhone, 'onPress': () {}},
@@ -75,9 +88,17 @@ class PhoneScreen extends StatelessWidget {
                     titleSpacing: 0,
                     elevation: 0,
                     backgroundColor: CustomColors.appBackgroundColor,
-                    title: const HeadingText(
+                    title: HeadingText(
                       text: 'Browse Phones',
                       linkString: 'All Phones',
+                      link: () {
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                            builder: (context) => const ProductListingPage(filterKey: null, filterValue: null,),
+                          ),
+                        );
+                      },
                     ),
 
                     // TAB Options
@@ -840,9 +861,13 @@ class MainGrid extends StatelessWidget {
               Navigator.push(
                 context,
                 CupertinoPageRoute(
-                  builder: (context) => const ProductListingPage(),
+                  builder: (context) => ProductListingPage(
+                    filterKey: _tabs[section]['tabs'][index]['filterKey'],
+                    filterValue: _tabs[section]['tabs'][index]['filterValue'],
+                  ),
                 ),
               );
+              // _tabs[section]['tabs'][index]['filterKey'];
             },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

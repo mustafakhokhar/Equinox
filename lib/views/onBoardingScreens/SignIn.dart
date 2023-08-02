@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:temp_store/Widgets/FormVerification.dart';
 import 'package:temp_store/constants/colors.dart';
 import 'package:temp_store/constants/iconPath.dart';
-import 'package:temp_store/views/buyers/HomePages/phoneScreen.dart';
+import 'package:temp_store/controllers/authController.dart';
 import 'package:temp_store/views/onBoardingScreens/SignUp.dart';
 
 const headingStyle = TextStyle(
@@ -12,7 +13,13 @@ const headingStyle = TextStyle(
   height: 1.5,
 );
 
+AuthController authController = Get.find();
+
 class SignInScreen extends StatelessWidget {
+  SignInScreen({Key? key, String? title})
+      : mainHeading = title,
+        super(key: key);
+  String? mainHeading;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,8 +31,8 @@ class SignInScreen extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                const Text(
-                  "Welcome Back",
+                Text(
+                  mainHeading ?? "Welcome Back",
                   style: headingStyle,
                   textAlign: TextAlign.center,
                 ),
@@ -94,7 +101,11 @@ class SignInScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       SocialCard(icon: Image.asset(icFacebook), press: () {}),
-                      SocialCard(icon: Image.asset(icGoogle), press: () {}),
+                      SocialCard(
+                          icon: Image.asset(icGoogle),
+                          press: () {
+                            authController.signInWithGoogle();
+                          }),
                       SocialCard(icon: Image.asset(icApple), press: () {}),
                     ],
                   ),
@@ -145,12 +156,6 @@ class _SignFormState extends State<SignForm> {
               const Spacer(),
               TextButton(
                 onPressed: () {},
-                // => Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => ForgotPasswordScreen(),
-                //   ),
-                // ),
                 child: const Text(
                   "Forgot password",
                 ),
@@ -172,10 +177,8 @@ class _SignFormState extends State<SignForm> {
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-                // Navigator.push(context, MaterialPageRoute(builder: (context) {
-                //   return const PhoneScreen();
-                // }));
                 print("Login Successful: Email: $email ,Password: $password");
+                authController.signInWithEmail(email, password);
               }
               firstSubmit = true;
             },
@@ -253,9 +256,7 @@ class NoAccountText extends StatelessWidget {
               style: TextStyle(color: primary),
             ),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return SignUpScreen();
-              }));
+              Get.to(SignUpScreen());
             }),
       ],
     );

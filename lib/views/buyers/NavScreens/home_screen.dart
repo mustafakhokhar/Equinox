@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:temp_store/Widgets/searchBar.dart';
 import 'package:temp_store/constants/colors.dart';
-import 'package:temp_store/controllers/home_screen_controller.dart';
+import 'package:temp_store/controllers/UIcontrollers/home_screen_controller.dart';
 // import 'package:temp_store/views/buyers/HomePages/AccessoriesScreen.dart';
 // import 'package:temp_store/views/buyers/HomePages/LaptopScreen.dart';
 // import 'package:temp_store/views/buyers/HomePages/gadgetScreen.dart';
