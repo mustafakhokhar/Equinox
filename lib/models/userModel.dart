@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:temp_store/models/phoneModel.dart';
 
 class UserModel {
   String? id;

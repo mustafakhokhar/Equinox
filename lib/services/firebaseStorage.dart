@@ -22,7 +22,6 @@ class firebaseStorage {
       await uploadTask.whenComplete(() async {
         downloadURL = await profileImageRef.getDownloadURL();
         print('Profile Picture uploaded to Firebase Storage');
-        print('Download URL: $downloadURL');
         Get.find<UserController>().user!.image = downloadURL;
         return downloadURL;
       });
@@ -30,7 +29,29 @@ class firebaseStorage {
     } catch (e) {
       print('Error uploading image: $e');
       // Show error snackbar or toast
-      Get.snackbar('Error', 'Failed to update profile picture');
+      // Get.snackbar('Error', 'Failed to update profile picture');
+      return '';
+    }
+  }
+
+  // Store User Image in Firebase Storage
+  Future<String> storeProductImagesFirebaseStorage(image) async {
+    try {
+      final ImageRef =
+          _storageReference.ref().child('profilePictures').child(user!.uid);
+      final uploadTask = ImageRef.putFile(File(image!));
+      var downloadURL = '';
+
+      await uploadTask.whenComplete(() async {
+        downloadURL = await ImageRef.getDownloadURL();
+        print('Profile Picture uploaded to Firebase Storage');
+        return downloadURL;
+      });
+      return downloadURL;
+    } catch (e) {
+      print('Error uploading Product image: $e');
+      // Show error snackbar or toast
+      // Get.snackbar('Error', 'Failed to update profile picture');
       return '';
     }
   }

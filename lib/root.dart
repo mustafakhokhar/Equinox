@@ -7,6 +7,8 @@ import 'package:temp_store/views/onBoardingScreens/SignIn.dart';
 import 'controllers/authController.dart';
 
 class Root extends GetWidget {
+  const Root({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetX<AuthController>(

@@ -11,6 +11,8 @@ import '../models/phoneModel.dart';
 class Database {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+// ---------------------------------- User Collection ----------------------------------
+
   // Add User
   Future<bool> addNewUser(UserModel user) async {
     try {
@@ -54,79 +56,30 @@ class Database {
     }
   }
 
-  // Add new Phone to PhneAds Collection and User Profile's phoneAds Array
-  Future<bool> addNewProduct(PhoneModel phone) async {
-    if (Get.find<UserController>().user?.email == null ||
-        Get.find<AuthController>().user?.uid == null) {
-      print('User not found - Cant add product');
-      return false;
-    }
+  // Add Sell Phone Ad to User Profile
+  Future<bool> addPhoneAdToUser(partialPhoneData) async {
     try {
-      final phoneData = {
-        'sellerID': Get.find<UserController>().user?.id,
-        'sellerName': Get.find<UserController>().user?.name,
-        'sellerImage': Get.find<UserController>().user?.image,
-        'sellerPhone': Get.find<UserController>().user?.phone,
-        'sellerAddress': Get.find<UserController>().user?.address,
-        'make': phone.make,
-        'title': phone.title,
-        'variant': phone.variant,
-        'storage': phone.storage,
-        'color': phone.color,
-        'location': phone.location,
-        'pta': phone.pta,
-        'jv': phone.jv,
-        'batteryHealth': phone.batteryHealth,
-        'condition': phone.condition,
-        'subCondition': phone.subCondition,
-        'accessories': phone.accessories,
-        'sellerComment': phone.sellerComment,
-        'city': phone.city,
-        'featured': phone.featured,
-        'isSold': phone.isSold,
-        'images': phone.images,
-        'price': phone.price,
-        'createdAt': Timestamp.now(),
-        'updatedAt': Timestamp.now(),
-      };
-
-      // Add it to PhoneAds Collection
+      // Add it to User Profile too
       await _firestore
-          .collection('phoneAds')
-          .doc()
-          .set(phoneData)
-          .then((_) async {
-        try {
-          // Add it to User Profile too
-          await _firestore
-              .collection('users')
-              .doc(Get.find<AuthController>().user!.uid)
-              .update({
-            'phoneAds': FieldValue.arrayUnion([phoneData])
-          });
-          Get.find<UserController>().user!.phoneAds!.add(phoneData);
-          print('Product Appended to User Profile too');
-        } catch (e) {
-          print("Error Appending Product to User Profile: $e");
-        }
+          .collection('users')
+          .doc(Get.find<AuthController>().user!.uid)
+          .update({
+        'phoneAds': FieldValue.arrayUnion([partialPhoneData])
       });
-
-      print('Product Added Successfully');
+      Get.find<UserController>().user!.phoneAds!.add(partialPhoneData);
+      print('Phone Ad Added Successfully to User Profile in FireStore');
       return true;
     } catch (e) {
-      print("Error Add Product: $e");
+      print("Error Add Phone Ad to User Profile: $e");
       return false;
     }
   }
 
   // Update User Profile
-  Future<bool> updateUserProfileFirestore(
-      UserModel user, String imageRawPath) async {
+  Future<bool> updateUser(UserModel user, String imageRawPath) async {
     try {
       final profileImageUrl =
           await firebaseStorage().storeUserImageFirebaseStorage(imageRawPath);
-
-      print('Profile Image Url: $profileImageUrl');
 
       await _firestore.collection('users').doc(user.id).update({
         'name': user.name,
@@ -137,6 +90,7 @@ class Database {
         'address': user.address,
         'phoneAds': user.phoneAds,
       });
+      Get.find<UserController>().user!.image = profileImageUrl;
       print('User Profile Updated Successfully in FireStore');
       return true;
     } catch (e) {
@@ -145,20 +99,61 @@ class Database {
     }
   }
 
-  Stream<List<PhoneModel>> getAllPhoneAds() {
-    return _firestore
-        .collection('phoneAds')
-        .orderBy('createdAt', descending: true)
-        .snapshots()
-        .map((QuerySnapshot query) {
-      List<PhoneModel> retVal = [];
-      query.docs.forEach((element) {
-        retVal.add(PhoneModel.fromDocumentSnapshot(element));
+  // Add new Phone to PhoneAds Collection and User Profile's phoneAds Array
+  Future<bool> addNewProduct(PhoneModel phone) async {
+    if (Get.find<UserController>().user?.email == null ||
+        Get.find<AuthController>().user?.uid == null) {
+      print('User not found - Cant add product');
+      return false;
+    }
+    final fullPhoneAdDetail = {
+      'sellerID': Get.find<UserController>().user?.id,
+      'sellerName': Get.find<UserController>().user?.name,
+      'sellerImage': Get.find<UserController>().user?.image,
+      'sellerPhone': Get.find<UserController>().user?.phone,
+      'sellerAddress': Get.find<UserController>().user?.address,
+      'make': phone.make,
+      'title': phone.title,
+      'variant': phone.variant,
+      'storage': phone.storage,
+      'color': phone.color,
+      'location': phone.location,
+      'pta': phone.pta,
+      'jv': phone.jv,
+      'batteryHealth': phone.batteryHealth,
+      'condition': phone.condition,
+      'subCondition': phone.subCondition,
+      'accessories': phone.accessories,
+      'sellerComment': phone.sellerComment,
+      'city': phone.city,
+      'featured': phone.featured,
+      'isSold': phone.isSold,
+      'images': phone.images,
+      'price': phone.price,
+      'createdAt': Timestamp.now(),
+      'updatedAt': Timestamp.now(),
+    };
+    try {
+      // Add it to PhoneAds Collection
+      await _firestore
+          .collection('phoneAds')
+          .doc()
+          .set(fullPhoneAdDetail)
+          .then((_) async {
+        // Add it to User Profile too
+        await addPhoneAdToUser(fullPhoneAdDetail);
       });
-      return retVal;
-    });
+      print('Product Added Successfully');
+      return true;
+    } catch (e) {
+      print("Error Add Product: $e");
+      return false;
+    }
   }
 
+// ---------------------------------- PhoneAds Collection ----------------------------------
+
+  // Get All Phones Ads - according to filters and sort
   Stream<List<PhoneModel>> getAllPhoneAdsFiltered(
       Map<String, dynamic> selectedFilters, SortModel sortModel) {
     Query<Map<String, dynamic>> query = _firestore.collection('phoneAds');
@@ -222,17 +217,31 @@ class Database {
   }
 
   // Get Phone Details
-  Future<PhoneModel> getPhoneDetails(String uid) async {
-    try {
-      DocumentSnapshot phoneDoc =
-          await _firestore.collection('phoneAds').doc(uid).get();
-      print('Phones details fetched: ${phoneDoc.data()}');
-      return PhoneModel.fromDocumentSnapshot(phoneDoc);
-    } catch (e) {
-      print("Error Get Product: $e");
-      rethrow;
-    }
-  }
+  // Future<PhoneModel> getPhoneDetails(String uid) async {
+  //   try {
+  //     DocumentSnapshot phoneDoc =
+  //         await _firestore.collection('phoneAds').doc(uid).get();
+  //     print('Phones details fetched: ${phoneDoc.data()}');
+  //     return PhoneModel.fromDocumentSnapshot(phoneDoc);
+  //   } catch (e) {
+  //     print("Error Get Product: $e");
+  //     rethrow;
+  //   }
+  // }
+
+  // Stream<List<PhoneModel>> getAllPhoneAds() {
+  //   return _firestore
+  //       .collection('phoneAds')
+  //       .orderBy('createdAt', descending: true)
+  //       .snapshots()
+  //       .map((QuerySnapshot query) {
+  //     List<PhoneModel> retVal = [];
+  //     query.docs.forEach((element) {
+  //       retVal.add(PhoneModel.fromDocumentSnapshot(element));
+  //     });
+  //     return retVal;
+  //   });
+  // }
 
   // Stream<UserModel> getCurrentUser(String uid) {
   //   return _firestore

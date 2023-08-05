@@ -1,6 +1,4 @@
-import 'dart:ffi';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:temp_store/Widgets/filtersBottomSheet.dart';
@@ -18,7 +16,7 @@ class ProductListingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<FilterModel> _filterList = [
+    final List<FilterModel> filterList = [
       FilterModel("Sort", '', false, "sort", () {
         showSortBottomSheet();
       }),
@@ -29,14 +27,14 @@ class ProductListingPage extends StatelessWidget {
         showPriceBottomSheet();
       }),
       FilterModel("Condition", '', false, "condition", () {
-        showConditionBottomSheet();
+        showConditionBottomSheet('viewPage');
       }),
       FilterModel("PTA", '', false, "pta", () {
-        showPTABottomSheet();
+        showPTABottomSheet('viewPage');
       }),
       FilterModel("Brand", '', false, "brand", () {}),
       FilterModel("Location", '', false, "location", () {
-        showLocationBottomSheet();
+        showLocationBottomSheet('viewPage');
       }),
       FilterModel("Storage", '', false, "storage", () {
         showStorageBottomSheet();
@@ -54,7 +52,7 @@ class ProductListingPage extends StatelessWidget {
         body: GetX<PhoneListingController>(
           init: PhoneListingController(),
           builder: (PhoneListingController controller) {
-            if (controller != null && controller.phonesAds != null) {
+            if (controller.phonesAds != null) {
               return Stack(
                 children: <Widget>[
                   // purple backdrop design and App bar
@@ -119,9 +117,9 @@ class ProductListingPage extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: List<Widget>.generate(_filterList.length,
+                      children: List<Widget>.generate(filterList.length,
                           (int index) {
-                        final filterKey = _filterList[index].filterKey;
+                        final filterKey = filterList[index].filterKey;
                         // Sort and Filters
                         if (index >= 0 && index <= 1) {
                           return GestureDetector(
@@ -130,7 +128,7 @@ class ProductListingPage extends StatelessWidget {
                                 Padding(
                                   padding:
                                       const EdgeInsets.symmetric(horizontal: 5),
-                                  child: Text(_filterList[index].label),
+                                  child: Text(filterList[index].label),
                                 ),
                                 if (index == 1) ...[
                                   // const Icon(
@@ -164,7 +162,7 @@ class ProductListingPage extends StatelessWidget {
                               ],
                             ),
                             onTap: () {
-                              _filterList[index].onPress();
+                              filterList[index].onPress();
                             },
                           );
                         }
@@ -178,10 +176,10 @@ class ProductListingPage extends StatelessWidget {
                               label: Text(Get.find<PhoneListingController>()
                                           .selectedFilters[filterKey] !=
                                       null
-                                  ? '${_filterList[index].label}-${Get.find<PhoneListingController>().selectedFilters[filterKey].toString()}'
-                                  : _filterList[index].label),
+                                  ? '${filterList[index].label}-${Get.find<PhoneListingController>().selectedFilters[filterKey].toString()}'
+                                  : filterList[index].label),
                               onSelected: (bool selected) {
-                                _filterList[index].onPress();
+                                filterList[index].onPress();
                               },
                               selected: controller.selectedFilters
                                   .containsKey(filterKey),

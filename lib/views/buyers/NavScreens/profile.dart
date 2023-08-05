@@ -90,7 +90,7 @@ class ProfilePage extends StatelessWidget {
                               width: 200,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  Get.to(EditProfilePage());
+                                  Get.to(const EditProfilePage());
                                 },
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: primary,
@@ -186,7 +186,7 @@ class ProfilePage extends StatelessWidget {
                         userController.user?.email != null) {
                       Get.defaultDialog(
                         title: "LOGOUT",
-                        titlePadding: EdgeInsets.symmetric(vertical: 20),
+                        titlePadding: const EdgeInsets.symmetric(vertical: 20),
                         titleStyle: const TextStyle(fontSize: 20),
                         content:
                             const Text("Are you sure, you want to Logout?"),
@@ -207,12 +207,12 @@ class ProfilePage extends StatelessWidget {
                       );
                     } else {
                       Get.defaultDialog(
-                        titlePadding: EdgeInsets.symmetric(vertical: 20),
+                        titlePadding: const EdgeInsets.symmetric(vertical: 20),
                         title: "You Kiddin' Me?",
                         titleStyle: const TextStyle(
                           fontSize: 20,
                         ),
-                        content: Text("Sign-In first! 😏"),
+                        content: const Text("Sign-In first! 😏"),
                         cancel: OutlinedButton(
                             onPressed: () => Get.back(),
                             child: const Text("Okay")),

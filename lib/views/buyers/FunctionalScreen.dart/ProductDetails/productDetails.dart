@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:temp_store/constants/colors.dart';
 import 'package:temp_store/constants/iconPath.dart';
 import 'package:temp_store/controllers/UIcontrollers/product_details_controller.dart';
-import 'package:temp_store/controllers/phoneListingController.dart';
 import 'package:temp_store/models/phoneModel.dart';
 import 'package:temp_store/views/buyers/HomePages/phoneScreen.dart';
 

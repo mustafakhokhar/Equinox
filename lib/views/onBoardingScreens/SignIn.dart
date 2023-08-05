@@ -44,7 +44,7 @@ class SignInScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                SignForm(),
+                const SignForm(),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                 Row(
                   children: [
@@ -121,6 +121,8 @@ class SignInScreen extends StatelessWidget {
 }
 
 class SignForm extends StatefulWidget {
+  const SignForm({super.key});
+
   @override
   _SignFormState createState() => _SignFormState();
 }
@@ -256,7 +258,7 @@ class NoAccountText extends StatelessWidget {
               style: TextStyle(color: primary),
             ),
             onPressed: () {
-              Get.to(SignUpScreen());
+              Get.to(const SignUpScreen());
             }),
       ],
     );

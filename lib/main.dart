@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:temp_store/controllers/bindings/AuthBinding.dart';
-import 'package:temp_store/controllers/userController.dart';
 import 'package:temp_store/firebase_options.dart';
-import 'package:temp_store/root.dart';
 import 'package:temp_store/views/buyers/AppMainNavigation.dart';
 
 Future<void> main() async {

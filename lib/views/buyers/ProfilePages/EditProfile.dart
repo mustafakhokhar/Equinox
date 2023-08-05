@@ -15,17 +15,15 @@ class EditProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     EditProfileController controller = Get.put(EditProfileController());
-    final ImagePicker _imagePicker = ImagePicker();
-    XFile? _profilePicture;
+    final ImagePicker imagePicker = ImagePicker();
+    XFile? profilePicture;
 
     Future<void> _pickImage(ImageSource source) async {
-      final pickedFile = await _imagePicker.pickImage(source: source);
+      final pickedFile = await imagePicker.pickImage(source: source);
       controller.obj = pickedFile!.path;
-      print('Picked file: ${pickedFile!.path}');
-      print('object: ${controller.imagePath}');
     }
 
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
 
     bool firstSubmit = false;
     final userController = Get.find<UserController>();
@@ -50,12 +48,11 @@ class EditProfilePage extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () async {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-                print(
-                    "Profile Updated Success: Name: $name, Phone: $phone, Email: $email, Address: ${address.trim()}");
+              if (formKey.currentState!.validate()) {
+                formKey.currentState!.save();
                 userController.updateUserProfile(name.trim(), address.trim(),
                     controller.imagePath, phone.trim());
+                Get.back();
               }
               firstSubmit = true;
             },
@@ -76,11 +73,10 @@ class EditProfilePage extends StatelessWidget {
               () => CircleAvatar(
                 backgroundColor: Colors.white,
                 radius: 60,
-                backgroundImage: Get.find<EditProfileController>()
-                            .imagePath !=
+                backgroundImage: Get.find<EditProfileController>().imagePath !=
                         ''
-                    ? FileImage(File(
-                            Get.find<EditProfileController>().imagePath))
+                    ? FileImage(
+                            File(Get.find<EditProfileController>().imagePath))
                         as ImageProvider<Object>
                     : NetworkImage(
                         Get.find<UserController>().user!.image.toString()),
@@ -148,7 +144,7 @@ class EditProfilePage extends StatelessWidget {
 
           // -- Form Fields
           Form(
-            key: _formKey,
+            key: formKey,
             child: Column(
               children: [
                 Row(
@@ -165,7 +161,7 @@ class EditProfilePage extends StatelessWidget {
                         initialValue: userController.user!.name,
                         onSaved: (newName) => name = newName!,
                         onChanged: (name) {
-                          if (firstSubmit) _formKey.currentState!.validate();
+                          if (firstSubmit) formKey.currentState!.validate();
                         },
                         validator: (name) {
                           if (name!.isEmpty) {
@@ -174,6 +170,7 @@ class EditProfilePage extends StatelessWidget {
                               !nameValidationRegExp.hasMatch(name)) {
                             return kInvalidNameError;
                           }
+                          return null;
                         },
                         decoration: const InputDecoration(
                             border: InputBorder.none, hintText: 'Full Name'),
@@ -196,7 +193,7 @@ class EditProfilePage extends StatelessWidget {
                         initialValue: userController.user!.phone,
                         onSaved: (newNumber) => phone = newNumber!,
                         onChanged: (number) {
-                          if (firstSubmit) _formKey.currentState!.validate();
+                          if (firstSubmit) formKey.currentState!.validate();
                         },
                         validator: (number) {
                           if (number!.isEmpty) {
@@ -205,6 +202,7 @@ class EditProfilePage extends StatelessWidget {
                               !phoneValidationRegExp.hasMatch(number)) {
                             return kPhoneInvalidError;
                           }
+                          return null;
                         },
                         decoration: const InputDecoration(
                             border: InputBorder.none, hintText: 'Enter Number'),
@@ -248,7 +246,7 @@ class EditProfilePage extends StatelessWidget {
                         initialValue: userController.user!.address,
                         onSaved: (newAddress) => address = newAddress!,
                         onChanged: (address) {
-                          if (firstSubmit) _formKey.currentState!.validate();
+                          if (firstSubmit) formKey.currentState!.validate();
                         },
                         keyboardType: TextInputType.multiline,
                         maxLines: null,

@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:temp_store/Widgets/headingText.dart';
 import 'package:temp_store/constants/colors.dart';
 import 'package:temp_store/constants/iconPath.dart';
 import 'package:temp_store/constants/imagePath.dart';
-import 'package:temp_store/controllers/phoneListingController.dart';
 import 'package:temp_store/views/buyers/FunctionalScreen.dart/ProductListing/product_list.dart';
 
 class PhoneScreen extends StatelessWidget {

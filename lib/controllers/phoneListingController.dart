@@ -7,9 +7,6 @@ class PhoneListingController extends GetxController {
   final Rx<List<PhoneModel>> _phoneList = Rx<List<PhoneModel>>([]);
   List<PhoneModel> get phonesAds => _phoneList.value;
 
-  final _allLocations = <String, dynamic>{}.obs;
-  Map<String, dynamic> get allLocations => _allLocations;
-
   final _selectedFilters = <String, dynamic>{}.obs;
   Map<String, dynamic> get selectedFilters => _selectedFilters;
 

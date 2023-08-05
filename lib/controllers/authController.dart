@@ -46,7 +46,7 @@ class AuthController extends GetxController {
           email: email.trim(), password: password);
 
       // Add user to Firestore 'Users' Collections
-      UserModel _user = UserModel(
+      UserModel user = UserModel(
         id: userDetails.user!.uid,
         name: nam,
         phone: phone,
@@ -57,11 +57,11 @@ class AuthController extends GetxController {
         phoneAds: [],
       );
 
-      print('User model data in Signup controller ${_user.name}');
+      print('User model data in Signup controller ${user.name}');
 
-      if (await Database().addNewUser(_user)) {
+      if (await Database().addNewUser(user)) {
         print('User Created Successfully in Firestore');
-        Get.find<UserController>().user = _user;
+        Get.find<UserController>().user = user;
         Get.off(AppNavigationScreen(
           index: 4,
         ));
@@ -122,7 +122,7 @@ class AuthController extends GetxController {
       var userDetails = await _auth.signInWithCredential(credential);
 
       // Add user to Firestore 'Users' Collections
-      UserModel _user = UserModel(
+      UserModel user = UserModel(
         id: userDetails.user!.uid,
         name: userDetails.user!.displayName,
         phone: userDetails.user!.phoneNumber,
@@ -133,9 +133,9 @@ class AuthController extends GetxController {
         phoneAds: [],
       );
 
-      if (await Database().addNewUser(_user)) {
+      if (await Database().addNewUser(user)) {
         print('User Created Successfully in Firestore From Google');
-        Get.find<UserController>().user = _user;
+        Get.find<UserController>().user = user;
         Get.back();
       } else {
         print('Error Creating User in Firestore From Google');

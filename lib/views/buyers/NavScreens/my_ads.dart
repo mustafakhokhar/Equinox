@@ -15,21 +15,21 @@ class MyAds extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: CustomColors.appBarColor,
-        title: Text('My Phone Ads'),
+        title: const Text('My Phone Ads'),
       ),
       body: GetX<UserController>(
         // init: Get.put(UserController()),
         builder: (UserController controller) {
-          if (controller.getUserPhoneAds().isNotEmpty &&
+          if (controller.getAllUserPhoneAds().isNotEmpty &&
               Get.find<AuthController>().user != null) {
             return ListView.builder(
-                itemCount: controller.getUserPhoneAds().length,
+                itemCount: controller.getAllUserPhoneAds().length,
                 itemBuilder: (_, int index) {
                   // List of items
                   return GestureDetector(
                     onTap: () {
                       Get.to(ProductDetailsPage(
-                        phone: controller.getUserPhoneAds()[index],
+                        phone: controller.getAllUserPhoneAds()[index],
                       ));
                     },
                     child: Container(
@@ -70,20 +70,20 @@ class MyAds extends StatelessWidget {
                               children: <Widget>[
                                 customText(
                                   controller
-                                      .getUserPhoneAds()[index]
+                                      .getAllUserPhoneAds()[index]
                                       .title
                                       .toString(),
                                   18,
                                   FontWeight.bold,
                                 ),
                                 customText(
-                                  'PKR ${controller.getUserPhoneAds()[index].price.toString()}',
+                                  'PKR ${controller.getAllUserPhoneAds()[index].price.toString()}',
                                   16,
                                   FontWeight.bold,
                                 ),
                                 customText(
                                   controller
-                                      .getUserPhoneAds()[index]
+                                      .getAllUserPhoneAds()[index]
                                       .city
                                       .toString(),
                                   15,
@@ -94,7 +94,9 @@ class MyAds extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     customText(
-                                      controller.getUserPhoneAds()[index].pta!
+                                      controller
+                                              .getAllUserPhoneAds()[index]
+                                              .pta!
                                           ? 'PTA'
                                           : 'Non-PTA',
                                       13,
@@ -106,7 +108,7 @@ class MyAds extends StatelessWidget {
                                     ),
                                     customText(
                                       controller
-                                          .getUserPhoneAds()[index]
+                                          .getAllUserPhoneAds()[index]
                                           .condition
                                           .toString(),
                                       13,
@@ -117,7 +119,7 @@ class MyAds extends StatelessWidget {
                                       size: 12,
                                     ),
                                     customText(
-                                      '${controller.getUserPhoneAds()[index].storage.toString()} GB',
+                                      '${controller.getAllUserPhoneAds()[index].storage.toString()} GB',
                                       13,
                                     ),
                                   ],

@@ -14,6 +14,8 @@ const headingStyle = TextStyle(
 );
 
 class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +40,7 @@ class SignUpScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                SignForm(),
+                const SignForm(),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                 Row(
                   children: [
@@ -96,6 +98,8 @@ class SignUpScreen extends StatelessWidget {
 }
 
 class SignForm extends StatefulWidget {
+  const SignForm({super.key});
+
   @override
   _SignFormState createState() => _SignFormState();
 }

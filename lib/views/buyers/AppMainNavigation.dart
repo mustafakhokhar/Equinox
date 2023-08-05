@@ -6,7 +6,7 @@ import 'package:temp_store/constants/colors.dart';
 import 'package:temp_store/controllers/authController.dart';
 import 'package:temp_store/controllers/userController.dart';
 import 'package:temp_store/views/buyers/NavScreens/chat.dart';
-import 'package:temp_store/views/buyers/SellPage/phoneSell.dart';
+import 'package:temp_store/views/sellers/phoneSell.dart';
 import 'package:temp_store/views/onBoardingScreens/SignIn.dart';
 
 import '../../controllers/UIcontrollers/app_main_navigation_controller.dart';
@@ -201,6 +201,7 @@ class AppNavigationScreen extends StatelessWidget {
                       return GestureDetector(
                         onTap: () {
                           print('Selected: ${sellItemTags[index]['title']}');
+                          Get.back();
                           Get.to(sellItemTags[index]['onPress']);
                         },
                         child: Card(
