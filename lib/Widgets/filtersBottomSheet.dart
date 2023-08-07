@@ -1426,7 +1426,8 @@ void showBatteryHealthBottomSheet(identifier) {
           onPressed: () {
             String textController = batteryHealthTextController.text;
             if (Get.find<SellPageController>().sellFieldData['batteryHealth'] !=
-                '' || textController != '') {
+                    '' ||
+                textController != '') {
               if (identifier == 'viewPage') {
                 Get.find<PhoneListingController>()
                     .applyFilter('batteryHealth', textController);

@@ -1,4 +1,4 @@
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:temp_store/Widgets/filtersBottomSheet.dart';
@@ -117,8 +117,8 @@ class ProductListingPage extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: List<Widget>.generate(filterList.length,
-                          (int index) {
+                      children:
+                          List<Widget>.generate(filterList.length, (int index) {
                         final filterKey = filterList[index].filterKey;
                         // Sort and Filters
                         if (index >= 0 && index <= 1) {
@@ -233,13 +233,24 @@ class ProductListingPage extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(20),
                                         border: Border.all(
                                             width: 2, color: secondary),
-                                        // image: DecorationImage(
-                                        //     image: NetworkImage(
-                                        //         controller.phonesAds[index].images
-                                        //         // filterProducts[index]['image_url']
-                                        //         ),
-                                        //     fit: BoxFit.contain),
+                                        image: DecorationImage(
+                                            image: 
+                                            NetworkImage(controller
+                                                .phonesAds[index].images?[0]),
+                                            fit: BoxFit.cover),
                                       ),
+                                  //     child: CachedNetworkImage(
+                                  //   imageUrl: controller
+                                  //               .phonesAds[index].images?[0],
+                                  //   progressIndicatorBuilder: (context, url,
+                                  //           downloadProgress) =>
+                                  //       CircularProgressIndicator(
+                                  //           value: downloadProgress.progress),
+                                  //   errorWidget: (context, url, error) =>
+                                  //       Icon(Icons.error),
+                                  //   fit: BoxFit.cover,
+                                  //   width: Get.width,
+                                  // ),,
                                     ),
                                     // Text to Display
                                     Expanded(
@@ -294,7 +305,7 @@ class ProductListingPage extends StatelessWidget {
                                                 size: 12,
                                               ),
                                               customText(
-                                                '${controller.phonesAds[index].storage.toString()} GB',
+                                                controller.phonesAds[index].storage.toString(),
                                                 13,
                                               ),
                                             ],

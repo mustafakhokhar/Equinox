@@ -51,15 +51,15 @@ class MyAds extends StatelessWidget {
                             width: MediaQuery.of(context).size.width * 0.32,
                             margin: const EdgeInsets.only(right: 15),
                             decoration: BoxDecoration(
-                              color: Colors.amber,
                               borderRadius: BorderRadius.circular(20),
                               border: Border.all(width: 2, color: secondary),
-                              // image: DecorationImage(
-                              //     image: NetworkImage(
-                              //         controller.phonesAds[index].images
-                              //         // filterProducts[index]['image_url']
-                              //         ),
-                              //     fit: BoxFit.contain),
+                              image: DecorationImage(
+                                  image: NetworkImage(controller
+                                          .getAllUserPhoneAds()[index]
+                                          .images[0]
+                                      // filterProducts[index]['image_url']
+                                      ),
+                                  fit: BoxFit.cover),
                             ),
                           ),
                           // Text to Display
@@ -119,7 +119,7 @@ class MyAds extends StatelessWidget {
                                       size: 12,
                                     ),
                                     customText(
-                                      '${controller.getAllUserPhoneAds()[index].storage.toString()} GB',
+                                      controller.getAllUserPhoneAds()[index].storage.toString(),
                                       13,
                                     ),
                                   ],

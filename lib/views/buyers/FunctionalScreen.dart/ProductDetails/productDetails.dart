@@ -67,11 +67,22 @@ class ProductDetailsPage extends StatelessWidget {
                                 return ClipRRect(
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(5.0)),
-                                  child: CachedNetworkImage(
-                                    imageUrl: item['image_thumbnail_path'],
+                                  child:
+                                      // Image.network(
+                                      //   item,
+                                      //   fit: BoxFit.fitWidth,
+                                      //   width: Get.width,
+                                      // ),
+                                      CachedNetworkImage(
+                                    imageUrl: item,
+                                    progressIndicatorBuilder: (context, url,
+                                            downloadProgress) =>
+                                        CircularProgressIndicator(
+                                            value: downloadProgress.progress),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
                                     fit: BoxFit.cover,
                                     width: Get.width,
-                                    // color: Colors.red,
                                   ),
                                 );
                               }).toList(),
@@ -156,7 +167,7 @@ class ProductDetailsPage extends StatelessWidget {
                               Icons.storage_outlined,
                               color: primary,
                             ),
-                            Text("${controller.phoneDetails!.storage!} GB"),
+                            Text(controller.phoneDetails!.storage!),
                           ],
                         ),
                         Column(
@@ -252,7 +263,7 @@ class ProductDetailsPage extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              controller.phoneDetails!.sellerAddress.toString(),
+                              '${controller.phoneDetails!.location.toString()}, ${controller.phoneDetails!.city.toString()}',
                               style: const TextStyle(
                                 fontSize: 16,
                               ),
@@ -289,20 +300,20 @@ class ProductDetailsPage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        // color: Colors.amber,
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        height: MediaQuery.of(context).size.height * 0.15,
-                        // color: Colors.amber,
-                        child: controller.phoneDetails!.sellerImage == null
-                            ? const Image(
-                                image: AssetImage(icKitPhone),
-                                fit: BoxFit.cover,
-                              )
-                            : Image.network(
-                                controller.phoneDetails!.sellerImage.toString(),
-                                fit: BoxFit.cover,
-                              )
-                      )
+                          // color: Colors.amber,
+                          width: MediaQuery.of(context).size.width * 0.3,
+                          height: MediaQuery.of(context).size.height * 0.15,
+                          // color: Colors.amber,
+                          child: controller.phoneDetails!.sellerImage == null
+                              ? const Image(
+                                  image: AssetImage(icKitPhone),
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.network(
+                                  controller.phoneDetails!.sellerImage
+                                      .toString(),
+                                  fit: BoxFit.cover,
+                                ))
                     ],
                   ),
 
@@ -422,7 +433,7 @@ class ProductDetailsListView extends StatelessWidget {
       },
       {
         'title': 'Storage',
-        'value': '${controller.phoneDetails!.storage.toString()} GB'
+        'value': controller.phoneDetails!.storage.toString()
       },
       {
         'title': 'Condition',

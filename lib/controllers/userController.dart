@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:temp_store/controllers/authController.dart';
 import 'package:temp_store/models/userModel.dart';
 import 'package:temp_store/services/database.dart';
+import 'package:temp_store/services/firebaseStorage.dart';
 
 import '../models/phoneModel.dart';
 
@@ -40,20 +41,27 @@ class UserController extends GetxController {
   // Update User Profile
   Future<void> updateUserProfile(
       String uName, String uAddress, String uImageRaw, String uPhone) async {
-    UserModel user = UserModel(
+    UserModel userDetails = UserModel(
       id: Get.find<AuthController>().user!.uid,
       name: uName,
       phone: uPhone,
-      email: user.email,
-      password: user.password,
+      email: user!.email,
+      password: user!.password,
       address: uAddress,
       image: '',
-      phoneAds: user.phoneAds,
+      phoneAds: user!.phoneAds,
     );
     try {
-      if (await Database().updateUser(user, uImageRaw)) {}
-      Get.snackbar('Profile Updated', user.email.toString(),
-          snackPosition: SnackPosition.BOTTOM);
+      await firebaseStorage()
+          .storeUserImageFirebaseStorage(uImageRaw)
+          .then((profileImageUrl) async {
+        await Database().updateUser(userDetails, profileImageUrl).then((value) {
+          Get.find<UserController>().user!.image = profileImageUrl;
+          Get.back();
+          Get.snackbar('Profile Updated', user!.email.toString(),
+              snackPosition: SnackPosition.BOTTOM);
+        });
+      });
     } catch (e) {
       print('Error updating user profile: $e');
       Get.snackbar('Error updating user profile:', 'Profile cannot be updated',

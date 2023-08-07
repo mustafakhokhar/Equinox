@@ -76,21 +76,17 @@ class Database {
   }
 
   // Update User Profile
-  Future<bool> updateUser(UserModel user, String imageRawPath) async {
+  Future<bool> updateUser(UserModel user, String imageURL) async {
     try {
-      final profileImageUrl =
-          await firebaseStorage().storeUserImageFirebaseStorage(imageRawPath);
-
       await _firestore.collection('users').doc(user.id).update({
         'name': user.name,
         'email': user.email,
         'password': user.password,
-        'image': profileImageUrl,
+        'image': imageURL,
         'phone': user.phone,
         'address': user.address,
         'phoneAds': user.phoneAds,
       });
-      Get.find<UserController>().user!.image = profileImageUrl;
       print('User Profile Updated Successfully in FireStore');
       return true;
     } catch (e) {
@@ -111,7 +107,7 @@ class Database {
       'sellerName': Get.find<UserController>().user?.name,
       'sellerImage': Get.find<UserController>().user?.image,
       'sellerPhone': Get.find<UserController>().user?.phone,
-      'sellerAddress': Get.find<UserController>().user?.address,
+      'sellerAddress': phone.location,
       'make': phone.make,
       'title': phone.title,
       'variant': phone.variant,

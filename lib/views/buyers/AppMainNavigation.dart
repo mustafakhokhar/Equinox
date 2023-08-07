@@ -144,32 +144,6 @@ class AppNavigationScreen extends StatelessWidget {
                 ));
           } else {
             print('Add clicked');
-            // PhoneModel temp = PhoneModel(
-            //   sellerID: Get.find<AuthController>().user?.uid,
-            //   sellerAddress: 'Khalid Bin Waleed Road, Karachi',
-            //   sellerName: 'Muhammad Ali',
-            //   sellerPhone: '03001234567',
-            //   sellerImage: 'https://i.imgur.com/BoN9kdC.png',
-            //   make: 'Apple',
-            //   title: 'iPhone 14 Pro Max',
-            //   location: 'Khalid Bin Waleed Road, Karachi',
-            //   variant: 'LLA',
-            //   storage: '128',
-            //   color: 'gold',
-            //   pta: true,
-            //   jv: false,
-            //   batteryHealth: '100%',
-            //   condition: 'New',
-            //   subCondition: 'Kit',
-            //   accessories: {},
-            //   sellerComment: 'No Comment',
-            //   city: 'Karachi',
-            //   featured: false,
-            //   isSold: false,
-            //   images: null,
-            //   price: 120,
-            // );
-            // Database().addNewProduct(temp);
             Get.bottomSheet(Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),

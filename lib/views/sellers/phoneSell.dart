@@ -137,6 +137,13 @@ class PhoneSellNowPag extends StatelessWidget {
         'trailing': Icons.arrow_drop_down,
         'onPress': () {}
       },
+      {
+        'title': '',
+        'subtitle': '',
+        'key': 'images',
+        'trailing': Icons.arrow_drop_down,
+        'onPress': () {}
+      },
     ];
     // Functions
     bool checkAllRequiredFieldsSelected() {
@@ -161,7 +168,6 @@ class PhoneSellNowPag extends StatelessWidget {
               onPressed: () {
                 if (_formKey.currentState?.saveAndValidate() ?? false) {
                   // Form is valid. Perform the necessary actions.
-                  // print('${_formKey.currentState!.value}');
                   Get.find<SellPageController>().sellFieldData['location'] =
                       _formKey.currentState!.value['location'].toString();
                   Get.find<SellPageController>().sellFieldData['price'] =
@@ -169,12 +175,12 @@ class PhoneSellNowPag extends StatelessWidget {
                   Get.find<SellPageController>()
                           .sellFieldData['sellerComment'] =
                       _formKey.currentState!.value['sellerComment'].toString();
+
                   // Check if all required fields have been selected
                   if (!checkAllRequiredFieldsSelected()) {
-                    // Show an error message
                     Get.snackbar(
                       'Incomplete Post',
-                      'Please select a value for each list tile before completing the post.',
+                      'Please fill complete details.',
                       snackPosition: SnackPosition.BOTTOM,
                       backgroundColor: Colors.white,
                       colorText: Colors.red,
@@ -183,12 +189,13 @@ class PhoneSellNowPag extends StatelessWidget {
                     return;
                   }
                   print('Done');
+                  Get.find<SellPageController>().postAd();
                 } else {
                   // Form is not valid. Handle invalid form data.
                   debugPrint('Validation failed');
                   Get.snackbar(
                     'Incomplete Post',
-                    'Please select a value for each list tile before completing the post.',
+                    'Please fill complete details.',
                     snackPosition: SnackPosition.BOTTOM,
                     backgroundColor: Colors.white,
                     colorText: Colors.red,
@@ -330,7 +337,7 @@ class PhoneSellNowPag extends StatelessWidget {
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
-                            if (index < sellComponents.length - 3) {
+                            if (index < sellComponents.length - 4) {
                               return Card(
                                 elevation: 0.3,
                                 shadowColor: primary,
@@ -369,7 +376,7 @@ class PhoneSellNowPag extends StatelessWidget {
                                   onTap: sellComponents[index]['onPress'],
                                 ),
                               );
-                            } else {
+                            } else if (index < sellComponents.length - 1) {
                               return Card(
                                 elevation: 0.3,
                                 shadowColor: primary,

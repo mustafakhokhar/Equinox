@@ -59,15 +59,17 @@ class AuthController extends GetxController {
 
       print('User model data in Signup controller ${user.name}');
 
-      if (await Database().addNewUser(user)) {
+      // if (
+      await Database().addNewUser(user).then((value) {
         print('User Created Successfully in Firestore');
         Get.find<UserController>().user = user;
-        Get.off(AppNavigationScreen(
-          index: 4,
-        ));
-      } else {
-        print('Error Creating User in Firestore');
-      }
+        Get.off(AppNavigationScreen());
+      });
+      // ) {
+
+      // } else {
+      //   print('Error Creating User in Firestore');
+      // }
       Get.snackbar('Logged In', userDetails.user!.email.toString(),
           snackPosition: SnackPosition.BOTTOM);
     } catch (e) {
@@ -149,5 +151,4 @@ class AuthController extends GetxController {
           snackPosition: SnackPosition.BOTTOM);
     }
   }
-
 }

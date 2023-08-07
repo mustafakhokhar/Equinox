@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,7 +17,7 @@ class EditProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     EditProfileController controller = Get.put(EditProfileController());
     final ImagePicker imagePicker = ImagePicker();
-    XFile? profilePicture;
+    // XFile? profilePicture;
 
     Future<void> _pickImage(ImageSource source) async {
       final pickedFile = await imagePicker.pickImage(source: source);
@@ -52,7 +53,6 @@ class EditProfilePage extends StatelessWidget {
                 formKey.currentState!.save();
                 userController.updateUserProfile(name.trim(), address.trim(),
                     controller.imagePath, phone.trim());
-                Get.back();
               }
               firstSubmit = true;
             },
@@ -70,7 +70,25 @@ class EditProfilePage extends StatelessWidget {
           // Image and Bottom Sheet
           Center(
             child: Obx(
-              () => CircleAvatar(
+              () =>
+                  // ClipRRect(
+                  //   borderRadius: BorderRadius.circular(200),
+                  //   child: CachedNetworkImage(
+                  //     imageUrl: userController.user?.image == ''
+                  //         ? 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'
+                  //         : userController.user?.image ??
+                  //             'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+                  //     progressIndicatorBuilder: (context, url, downloadProgress) =>
+                  //         CircularProgressIndicator(
+                  //       value: downloadProgress.progress,
+                  //     ),
+                  //     errorWidget: (context, url, error) => Icon(Icons.error),
+                  //     fit: BoxFit.cover,
+                  //     width: Get.width * 0.4,
+                  //     height: Get.width * 0.4,
+                  //   ),
+                  // ),
+                  CircleAvatar(
                 backgroundColor: Colors.white,
                 radius: 60,
                 backgroundImage: Get.find<EditProfileController>().imagePath !=
@@ -78,8 +96,8 @@ class EditProfilePage extends StatelessWidget {
                     ? FileImage(
                             File(Get.find<EditProfileController>().imagePath))
                         as ImageProvider<Object>
-                    : NetworkImage(
-                        Get.find<UserController>().user!.image.toString()),
+                    : CachedNetworkImageProvider(
+                      Get.find<UserController>().user!.image.toString()),
               ),
             ),
           ),

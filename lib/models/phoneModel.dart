@@ -5,7 +5,6 @@ class PhoneModel {
   String? sellerName;
   String? sellerImage;
   String? sellerPhone;
-  String? sellerAddress;
   String? make;
   String? title;
   String? location;
@@ -21,7 +20,7 @@ class PhoneModel {
   String? sellerComment;
   int? price;
   String? city;
-  String? images;
+  List? images;
   bool? featured;
   bool? isSold;
 
@@ -29,7 +28,6 @@ class PhoneModel {
     required this.sellerImage,
     required this.sellerName,
     required this.sellerPhone,
-    required this.sellerAddress,
     required this.sellerID,
     required this.location,
     required this.make,
@@ -56,7 +54,6 @@ class PhoneModel {
     sellerName = doc['sellerName'];
     sellerImage = doc['sellerImage'];
     sellerPhone = doc['sellerPhone'];
-    sellerAddress = doc['sellerAddress'];
     make = doc['make'];
     title = doc['title'];
     location = doc['location'];
@@ -72,7 +69,13 @@ class PhoneModel {
     sellerComment = doc['sellerComment'];
     price = doc['price'];
     city = doc['city'];
-    images = doc['images'];
+    if (doc['images'] is String) {
+      // If it's a String, convert it to a single-item List
+      images = [doc['images']];
+    } else {
+      // Otherwise, assign it directly
+      images = doc['images'];
+    }
     featured = doc['featured'] as bool?;
     isSold = doc['isSold'] as bool?;
   }
@@ -83,7 +86,6 @@ class PhoneModel {
     sellerName = data['sellerName'];
     sellerImage = data['sellerImage'];
     sellerPhone = data['sellerPhone'];
-    sellerAddress = data['sellerAddress'];
     make = data['make'];
     title = data['title'];
     location = data['location'];
@@ -97,10 +99,15 @@ class PhoneModel {
     subCondition = data['subCondition'];
     accessories = (data['accessories'] as Map<String, dynamic>?) ?? {};
     sellerComment = data['sellerComment'];
-    // price = data['price'];
     price = int.tryParse(data['price'].toString());
     city = data['city'];
-    images = data['images'];
+    if (data['images'] is String) {
+      // If it's a String, convert it to a single-item List
+      images = [data['images']];
+    } else {
+      // Otherwise, assign it directly
+      images = data['images'];
+    }
     featured = data['featured'] as bool?;
     isSold = data['isSold'] as bool?;
   }

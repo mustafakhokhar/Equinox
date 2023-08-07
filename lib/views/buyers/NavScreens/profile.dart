@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,13 +40,23 @@ class ProfilePage extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.3,
                         height: MediaQuery.of(context).size.width * 0.3,
                         child: ClipRRect(
-                            borderRadius: BorderRadius.circular(0),
-                            child: Image.network(userController
-                                        .user?.image ==
-                                    ''
+                          borderRadius: BorderRadius.circular(0),
+                          child: CachedNetworkImage(
+                            imageUrl: userController.user?.image == ''
                                 ? 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'
                                 : userController.user?.image ??
-                                    'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png')),
+                                    'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+                            progressIndicatorBuilder:
+                                (context, url, downloadProgress) =>
+                                    CircularProgressIndicator(
+                              value: downloadProgress.progress,
+                            ),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
+                            fit: BoxFit.cover,
+                            width: Get.width,
+                          ),
+                        ),
                       ),
                       const SizedBox(width: 10),
                       Expanded(
